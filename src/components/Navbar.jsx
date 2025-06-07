@@ -33,7 +33,7 @@ export default function Navbar() {
           <div className="flex-shrink-0">
             <a href="#" className="flex items-center">
               <img
-                src="/images/Scell-Logo.svg"
+                src="./images/Scell-Logo.svg"
                 alt="Sustainability Cell Logo"
                 className={`h-16 w-auto transition-all duration-300 ${
                   isScrolled ? "opacity-100" : "opacity-90"
