@@ -2,7 +2,7 @@
   "name": "suscell-working-complete",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://sustainabilitycell.github.io/suscell-website/",
+  "homepage": "https://sustainabilitycell-iitb.github.io/website/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
