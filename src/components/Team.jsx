@@ -10,7 +10,7 @@ const teamMembers = {
       email: "22b1510@iitb.ac.in",
       linkedin: "https://www.linkedin.com/in/shreyas-kulkarni-iitb",
       whatsapp: "",
-      image: "/images/Shreyas.jpg"
+      image: "/website/images/Shreyas.jpg"
     },
     {
       name: "P N Pranav Yadav",
@@ -19,7 +19,7 @@ const teamMembers = {
       email: "",
       linkedin: "",
       whatsapp: "",
-      image: "/images/Pranav.jpeg"
+      image: "/website/images/Pranav.jpeg"
     }
   ],
   "Projects and Policies": [
@@ -30,7 +30,7 @@ const teamMembers = {
       email: "trivedyarth@gmail.com",
       linkedin: "www.linkedin.com/in/arth-trivedy-79875a224",
       whatsapp: "",
-      image: "/images/Arth.jpeg"
+      image: "/website/images/Arth.jpeg"
     },
     {
       name: "Siddhant Gupta",
@@ -39,7 +39,7 @@ const teamMembers = {
       email: "siddhant2804@gmail.com",
       linkedin: "https://www.linkedin.com/in/siddhantgupta-iit/",
       whatsapp: "",
-      image: "/images/Siddhant.jpg"
+      image: "/website/images/Siddhant.jpg"
     },
     {
       name: "Vinayak Jalan",
@@ -48,7 +48,7 @@ const teamMembers = {
       email: "vinayakjalan010@gmail.com",
       linkedin: "https://www.linkedin.com/in/vinayak-jalan-6218ba230/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
       whatsapp: "",
-      image: "/images/Vinayak.jpeg"
+      image: "/website/images/Vinayak.jpeg"
     }
   ],
   "Events and Operations": [
@@ -59,7 +59,7 @@ const teamMembers = {
       email: "ojas.suscell@gmail.com",
       linkedin: "https://www.linkedin.com/in/ojas-goel-069a85178/",
       whatsapp: "",
-      image: "/images/Ojas.png"
+      image: "/website/images/Ojas.png"
     },
     {
       name: "Vedant Ramesh Zanwar",
@@ -68,7 +68,7 @@ const teamMembers = {
       email: "vedantz.scell.iitb@gmail.com",
       linkedin: "https://www.linkedin.com/in/vedant-zanwar-1137ba27b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
       whatsapp: "",
-      image: "/images/Vedant.jpg"
+      image: "/website/images/Vedant.jpg"
     },
     {
       name: "Aditya Agarwal",
@@ -77,7 +77,7 @@ const teamMembers = {
       email: "adityaagarwal0808@gmail.com",
       linkedin: "www.linkedin.com/in/aditya-agarwal-a01500297",
       whatsapp: "",
-      image: "/images/Aditya.jpg"
+      image: "/website/images/Aditya.jpg"
     }
   ],
   "Web and Design": [
@@ -88,7 +88,7 @@ const teamMembers = {
       email: "yashashree.sustanabilitycell@gmail.com",
       linkedin: "www.linkedin.com/in/yashashree-charki-73908126b",
       whatsapp: "",
-      image: "/images/Yashashree.jpg"
+      image: "/website/images/Yashashree.jpg"
     },
     {
       name: "Krishna Gahlod",
@@ -97,7 +97,7 @@ const teamMembers = {
       email: "krishnagahlod@gmail.com",
       linkedin: "https://www.linkedin.com/in/krishna-gahlod-65143927b/",
       whatsapp: "",
-      image: "/images/Krishna.png"
+      image: "/website/images/Krishna.png"
     },
     {
       name: "Mohita",
@@ -106,7 +106,7 @@ const teamMembers = {
       email: "",
       linkedin: "https://www.linkedin.com/in/mohita-shanmugam?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
       whatsapp: "",
-      image: "/images/Mohita.jpg"
+      image: "/website/images/Mohita.jpg"
     }
   ]
 };

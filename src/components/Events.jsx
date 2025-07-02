@@ -17,7 +17,7 @@ export default function Events() {
     {
       title: "Sustainium Case Competition",
       description: "A nationwide case competition organized in collaboration with Tarutium Global Consulting, focusing on innovative waste management solutions. Launched on 24th January via Unstop, it received 500+ registrations from across India. The event promoted practical problem-solving in sustainability, with winners receiving cash prizes and pre-placement interview (PPI) opportunities, bridging the gap between environmental challenges and industry engagement.",
-      image: "/images/Sustainium.png",
+      image: "/website/images/Sustainium.png",
       date: "January 2025",
       location: "Online",
       category: "competition",
@@ -30,7 +30,7 @@ export default function Events() {
     {
       title: "Corporate-Oriented Projects",
       description: "Conducted two winter projects—'Think Like a CSO' and 'Think Like a Green Investor'—to promote corporate sustainability and green finance. With over 300 registrations from students nationwide, these initiatives offered experiential learning through real-world business scenarios. Participants tackled challenges aligned with corporate environmental responsibility, strengthening their analytical and sustainability-oriented decision-making skills in a corporate context.",
-      image: "/images/Sustainability Projects.png",
+      image: "/website/images/Sustainability Projects.png",
       date: "December 2024",
       location: "Online",
       category: "competition",
@@ -43,7 +43,7 @@ export default function Events() {
     {
       title: "Youth in Climate Action",
       description: "Hemavathi Shekhar emphasized the pivotal role of youth in influencing global climate policies through active participation in UN conferences. She shared her experiences to inspire students to engage in international summits.",
-      image: "/images/Youth in climate action.png",
+      image: "/website/images/Youth in climate action.png",
       date: "October 2024",
       location: "Online",
       category: "talk",
@@ -55,7 +55,7 @@ export default function Events() {
     {
       title: "Environmental Defence Fund",
       description: "Paridhi Mishra highlighted exclusive sustainability opportunities available with leading companies such as Zomato, ITC, and Amazon. She shared insights into how these organizations are integrating climate-focused initiatives.",
-      image: "/images/Defence event.webp",
+      image: "/website/images/Defence event.webp",
       date: "October 2024",
       location: "Lecture Hall Complex",
       category: "talk",
@@ -67,7 +67,7 @@ export default function Events() {
     {
       title: "SustAInify",
       description: "SustAInify challenged participants to address real-world sustainability issues using machine learning. Held on 10th–11th February, the event offered ₹30,000 in cash prizes and saw enthusiastic participation from across India. The competition blended technology with environmental problem-solving, encouraging innovative, data-driven solutions to pressing climate and sustainability challenges.",
-      image: "/images/Sustainify.png",
+      image: "/website/images/Sustainify.png",
       date: "February 2024",
       location: "Online",
       category: "competition",
@@ -80,7 +80,7 @@ export default function Events() {
     {
       title: "Half Marathon in IITB",
       description: "At the IITB Half Marathon, #BreatheBetterMumbai took center stage, driving awareness on air pollution. Emphasizing sustainability, we partnered with a certified recycling organization for plastic bottle recycling.",
-      image: "/images/halfmarathon.webp",
+      image: "/website/images/halfmarathon.webp",
       date: "October 2023",
       location: "IIT Bombay Campus",
       category: "awareness",
@@ -92,7 +92,7 @@ export default function Events() {
     {
       title: "ESG Workshop",
       description: "Conducted an enlightening workshop on 'People, Planet, and Profits' by Captain Tapas Majumdar, aimed at raising awareness about the emerging ESG (Environmental, Social, and Governance) corporate sector.",
-      image: "/images/esgWorkshop.webp",
+      image: "/website/images/esgWorkshop.webp",
       date: "March 2023",
       location: "Lecture Hall Complex",
       category: "workshop",
@@ -104,7 +104,7 @@ export default function Events() {
     {
       title: "Sustainability Cell Orientation",
       description: "Conducted an event (clubbed with the Green Cup Launch) to introduce Sustainability Cell to the students of IIT Bombay. Emphasis was given to raising awareness about why such a club is imperative to the future of the institute.",
-      image: "/images/greenCup.webp",
+      image: "/website/images/greenCup.webp",
       date: "August 2023",
       location: "PC Saxena Auditorium",
       category: "orientation",
@@ -116,7 +116,7 @@ export default function Events() {
     {
       title: "Airathon Mumbai 2022",
       description: "Collaborating with the Institute Technical Council and sponsored by Fitizen India, we conducted a Pan India competition to enhance Mumbai's air quality. With two tracks—Technical and Campaign—participants showcased innovative strategies and awareness campaigns.",
-      image: "/images/airathon.webp",
+      image: "/website/images/airathon.webp",
       date: "October 2022",
       location: "IIT Bombay Campus",
       category: "competition",

@@ -6,7 +6,7 @@ export default function Hero() {
       {/* Background Image with Gradient Overlay */}
       <div className="absolute inset-0">
         <img
-          src="/images/main-background.webp"
+          src="/website/images/main-background.webp"
           alt="Sustainability Cell Background"
           className="w-full h-full object-cover"
         />

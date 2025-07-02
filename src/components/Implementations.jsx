@@ -12,55 +12,55 @@ export default function Implementations() {
       title: "EV Buggy Stops",
       shortDescription: "Strategic implementation of EV buggy stops at high-traffic areas for optimized usage and enhanced efficiency.",
       fullDescription: "EV buggy stops were strategically implemented at high-traffic areas, including the Lecture Hall Complex and student residential zones. This initiative aimed to optimize their usage by ensuring convenient access while enhancing battery efficiency and reducing idle time.",
-      image: "images/EV stop.webp"
+      image: "/website/images/EV stop.webp"
     },
     {
       title: "AC Optimization in LHC",
       shortDescription: "New doors installed in Lecture Hall Complex to enhance insulation and reduce energy consumption.",
       fullDescription: "To reduce energy consumption, new doors were installed in the Lecture Hall Complex, enhancing insulation and minimizing energy loss. The installation has been completed, with additional improvements planned to further optimize efficiency.",
-      image: "images/LHC door.webp"
+      image: "/website/images/LHC door.webp"
     },
     {
       title: "Waste Data Display Boards in Mess",
       shortDescription: "Waste display boards integrated in hostels to track and reduce food wastage.",
       fullDescription: "Waste Display boards have been successfully integrated into every hostel, providing a transparent view of daily food wastage. By regularly calibrating and showcasing these figures, residents are actively engaged in understanding and reducing their environmental footprint.",
-      image: "images/foodw.webp"
+      image: "/website/images/foodw.webp"
     },
     {
       title: "Tree Plantation",
       shortDescription: "Collaborative tree-plantation initiative with Team Shunya on Independence Day 2022.",
       fullDescription: "Teamed up with Team Shunya for a collaborative tree-plantation initiative, uniting sustainability-focused groups from institutes across India. Our joint effort, held on Independence Day 2022, aimed at fostering environmental consciousness and contributing to a greener future.",
-      image: "images/treePlantation.webp"
+      image: "/website/images/treePlantation.webp"
     },
     {
       title: "Swacchta Pakhwada 2023",
       shortDescription: "Supported Government's Swachhta Pakhwada initiative with hostel cleanliness documentation.",
       fullDescription: "Assisted in the execution of the Swachhta Pakhwada observed by the Government of India from September 16 to September 30, mobilizing citizens to maintain high standards of cleanliness. The Sustainability Cell documented and reported hostel efforts both qualitatively and quantitatively.",
-      image: "images/swachchtaPakhwada.webp"
+      image: "/website/images/swachchtaPakhwada.webp"
     },
     {
       title: "Bin Segregation Project",
       shortDescription: "Waste bin segregation initiative launched with Hostel Affairs Council for efficient waste disposal.",
       fullDescription: "The Sustainability Cell, in association with the Hostel Affairs Council, launched a waste bin segregation initiative at IIT Bombay, promoting sustainability through efficient waste disposal and recycling. This reduces the campus's carbon footprint while enhancing resource conservation.",
-      image: "images/binSegregation.webp"
+      image: "/website/images/binSegregation.webp"
     },
     {
       title: "Carbon Footprinting",
       shortDescription: "Collaborating with professors to assess IIT Bombay's carbon footprint across different scopes.",
       fullDescription: "We are working with Professors Vikram Vishal (Earth Science) and Arnab Dutta (Chemistry) to perform a carbon footprint assessment of IIT Bombay. The emission breakdown: 95% from Scope 2, 4.4% from Scope 1, and 0.6% from Scope 3.",
-      image: "images/carbonFootprint.webp"
+      image: "/website/images/carbonFootprint.webp"
     },
     {
       title: "IITB Half Marathon",
       shortDescription: "Raised air pollution awareness at IITB Half Marathon with recycling initiatives.",
       fullDescription: "At the IITB Half Marathon on October 30th, #BreatheBetterMumbai raised awareness about air pollution. We partnered with a recycling organization for plastic bottle recycling and used waste cycle cardboard boxes to convey powerful pollution messages.",
-      image: "images/hm.webp"
+      image: "/website/images/hm.webp"
     },
     {
       title: "Green Cup Launch",
       shortDescription: "Launched Green Cup initiative with HA Council, engaging 100+ students.",
       fullDescription: "Collaborated with the HA Council to announce the official launch of the Green Cup. Students from all hostels attended, learning about its need, benefits, and scoring system. The event had 100+ attendees, formally kicking off the initiative in November.",
-      image: "images/greenCup.webp"
+      image: "/website/images/greenCup.webp"
     }
   ];
 

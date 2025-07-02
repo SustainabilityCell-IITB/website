@@ -2,10 +2,11 @@
   "name": "suscell-working-complete",
   "version": "1.0.0",
   "private": true,
+  "homepage": "https://SustainabilityCell-IITB.github.io/website",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
@@ -17,9 +18,9 @@
   "devDependencies": {
     "@vitejs/plugin-react": "^4.5.1",
     "autoprefixer": "^10.4.19",
+    "gh-pages": "^6.3.0",
     "postcss": "^8.4.35",
     "tailwindcss": "^3.4.1",
     "vite": "^4.5.2"
   }
 }
-
