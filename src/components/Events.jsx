@@ -4,55 +4,40 @@ import AnimatedSectionHeader from "./AnimatedSectionHeader";
 
 export default function Events() {
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [expandedDescriptions, setExpandedDescriptions] = useState({});
+
+  const toggleDescription = (eventTitle) => {
+    setExpandedDescriptions(prev => ({
+      ...prev,
+      [eventTitle]: !prev[eventTitle]
+    }));
+  };
 
   const events = [
     {
-      title: "Airathon Mumbai 2022",
-      description: "Collaborating with the Institute Technical Council and sponsored by Fitizen India, we conducted a Pan India competition to enhance Mumbai's air quality. With two tracks—Technical and Campaign—participants showcased innovative strategies and awareness campaigns.",
-      image: "/images/airathon.webp",
-      date: "October 2022",
-      location: "IIT Bombay Campus",
+      title: "Sustainium Case Competition",
+      description: "A nationwide case competition organized in collaboration with Tarutium Global Consulting, focusing on innovative waste management solutions. Launched on 24th January via Unstop, it received 500+ registrations from across India. The event promoted practical problem-solving in sustainability, with winners receiving cash prizes and pre-placement interview (PPI) opportunities, bridging the gap between environmental challenges and industry engagement.",
+      image: "/images/Sustainium.png",
+      date: "January 2025",
+      location: "Online",
       category: "competition",
       stats: {
-        prize: "₹60,000",
-        submissions: "150+",
-        achievement: "Asia's largest and world's second-largest air quality competition"
+        registrations: "500+",
+        focus: "Innovative waste management solutions",
+        rewards: "Cash prizes and PPI opportunities"
       }
     },
     {
-      title: "ESG Workshop",
-      description: "Conducted an enlightening workshop on 'People, Planet, and Profits' by Captain Tapas Majumdar, aimed at raising awareness about the emerging ESG (Environmental, Social, and Governance) corporate sector.",
-      image: "/images/esgWorkshop.webp",
-      date: "March 2023",
-      location: "Lecture Hall Complex",
-      category: "workshop",
+      title: "Corporate-Oriented Projects",
+      description: "Conducted two winter projects—'Think Like a CSO' and 'Think Like a Green Investor'—to promote corporate sustainability and green finance. With over 300 registrations from students nationwide, these initiatives offered experiential learning through real-world business scenarios. Participants tackled challenges aligned with corporate environmental responsibility, strengthening their analytical and sustainability-oriented decision-making skills in a corporate context.",
+      image: "/images/Sustainability Projects.png",
+      date: "December 2024",
+      location: "Online",
+      category: "competition",
       stats: {
-        participants: "80+",
-        focus: "Business, sustainability, and societal well-being"
-      }
-    },
-    {
-      title: "Half Marathon in IITB",
-      description: "At the IITB Half Marathon, #BreatheBetterMumbai took center stage, driving awareness on air pollution. Emphasizing sustainability, we partnered with a certified recycling organization for plastic bottle recycling.",
-      image: "/images/halfmarathon.webp",
-      date: "October 2023",
-      location: "IIT Bombay Campus",
-      category: "awareness",
-      stats: {
-        highlight: "Featured winning projects from Airathon Mumbai",
-        impact: "Raised awareness about air pollution"
-      }
-    },
-    {
-      title: "Sustainability Cell Orientation",
-      description: "Conducted an event (clubbed with the Green Cup Launch) to introduce Sustainability Cell to the students of IIT Bombay. Emphasis was given to raising awareness about why such a club is imperative to the future of the institute.",
-      image: "/images/greenCup.webp",
-      date: "August 2023",
-      location: "PC Saxena Auditorium",
-      category: "orientation",
-      stats: {
-        activities: "Interactive games and events",
-        rewards: "Low-maintenance succulent plants as prizes"
+        registrations: "300+",
+        projects: "Think Like a CSO, Think Like a Green Investor",
+        focus: "Corporate sustainability and green finance"
       }
     },
     {
@@ -77,6 +62,68 @@ export default function Events() {
       stats: {
         companies: "Zomato, ITC, Amazon",
         focus: "Sustainability career opportunities"
+      }
+    },
+    {
+      title: "SustAInify",
+      description: "SustAInify challenged participants to address real-world sustainability issues using machine learning. Held on 10th–11th February, the event offered ₹30,000 in cash prizes and saw enthusiastic participation from across India. The competition blended technology with environmental problem-solving, encouraging innovative, data-driven solutions to pressing climate and sustainability challenges.",
+      image: "/images/Sustainify.png",
+      date: "February 2024",
+      location: "Online",
+      category: "competition",
+      stats: {
+        prize: "₹30,000",
+        focus: "Machine learning for sustainability",
+        impact: "Data-driven climate solutions"
+      }
+    },
+    {
+      title: "Half Marathon in IITB",
+      description: "At the IITB Half Marathon, #BreatheBetterMumbai took center stage, driving awareness on air pollution. Emphasizing sustainability, we partnered with a certified recycling organization for plastic bottle recycling.",
+      image: "/images/halfmarathon.webp",
+      date: "October 2023",
+      location: "IIT Bombay Campus",
+      category: "awareness",
+      stats: {
+        highlight: "Featured winning projects from Airathon Mumbai",
+        impact: "Raised awareness about air pollution"
+      }
+    },
+    {
+      title: "ESG Workshop",
+      description: "Conducted an enlightening workshop on 'People, Planet, and Profits' by Captain Tapas Majumdar, aimed at raising awareness about the emerging ESG (Environmental, Social, and Governance) corporate sector.",
+      image: "/images/esgWorkshop.webp",
+      date: "March 2023",
+      location: "Lecture Hall Complex",
+      category: "workshop",
+      stats: {
+        participants: "80+",
+        focus: "Business, sustainability, and societal well-being"
+      }
+    },
+    {
+      title: "Sustainability Cell Orientation",
+      description: "Conducted an event (clubbed with the Green Cup Launch) to introduce Sustainability Cell to the students of IIT Bombay. Emphasis was given to raising awareness about why such a club is imperative to the future of the institute.",
+      image: "/images/greenCup.webp",
+      date: "August 2023",
+      location: "PC Saxena Auditorium",
+      category: "orientation",
+      stats: {
+        activities: "Interactive games and events",
+        rewards: "Low-maintenance succulent plants as prizes"
+      }
+    },
+    {
+      title: "Airathon Mumbai 2022",
+      description: "Collaborating with the Institute Technical Council and sponsored by Fitizen India, we conducted a Pan India competition to enhance Mumbai's air quality. With two tracks—Technical and Campaign—participants showcased innovative strategies and awareness campaigns.",
+      image: "/images/airathon.webp",
+      date: "October 2022",
+      location: "IIT Bombay Campus",
+      category: "competition",
+      stats: {
+        prize: "₹60,000",
+        submissions: "150+",
+        achievement: "Asia's largest and world's second-largest air quality competition"
       }
     }
   ];
@@ -147,7 +194,16 @@ export default function Events() {
                   <img
                     src={event.image}
                     alt={event.title}
-                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                    className={`w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 ${
+                      event.title === "Sustainium Case Competition" ? "object-center" :
+                      event.title === "Corporate-Oriented Projects" ? "object-center" :
+                      event.title === "SustAInify" ? "object-center" : "object-center"
+                    }`}
+                    style={{
+                      objectPosition: event.title === "Sustainium Case Competition" ? "center 38%" :
+                                     event.title === "Corporate-Oriented Projects" ? "center 5%" :
+                                     event.title === "SustAInify" ? "center 25%" : "center 10%"
+                    }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1B4332]/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div className="absolute top-4 right-4">
@@ -173,7 +229,33 @@ export default function Events() {
                   <h3 className="text-xl font-bold text-[#1B4332] mb-3 group-hover:text-[#9CCC5A] transition-colors duration-300">
                     {event.title}
                   </h3>
-                  <p className="text-gray-600 mb-4 line-clamp-3">{event.description}</p>
+                  <div className="mb-4">
+                    <p className={`text-gray-600 ${!expandedDescriptions[event.title] ? 'line-clamp-3' : ''}`}>
+                      {event.description}
+                    </p>
+                    {event.description.length > 150 && (
+                      <button
+                        onClick={() => toggleDescription(event.title)}
+                        className="text-[#9CCC5A] hover:text-[#1B4332] font-medium text-sm mt-2 transition-colors duration-300 flex items-center"
+                      >
+                        {expandedDescriptions[event.title] ? (
+                          <>
+                            Read Less
+                            <svg className="w-4 h-4 ml-1 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                          </>
+                        ) : (
+                          <>
+                            Read More
+                            <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                          </>
+                        )}
+                      </button>
+                    )}
+                  </div>
                   
                   <div className="space-y-2">
                     {Object.entries(event.stats).map(([key, value]) => (
