@@ -2,11 +2,12 @@
   "name": "suscell-working-complete",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://sustainabilitycell-iitb.github.io/website/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "framer-motion": "^12.16.0",
@@ -21,3 +22,4 @@
     "vite": "^4.5.2"
   }
 }
+
