@@ -30,7 +30,7 @@ export default function Events() {
     {
       title: "Corporate-Oriented Projects",
       description: "Conducted two winter projects—'Think Like a CSO' and 'Think Like a Green Investor'—to promote corporate sustainability and green finance. With over 300 registrations from students nationwide, these initiatives offered experiential learning through real-world business scenarios. Participants tackled challenges aligned with corporate environmental responsibility, strengthening their analytical and sustainability-oriented decision-making skills in a corporate context.",
-      image: "/website/images/Sustainability Projects.png",
+      image: "/website/images/Sustainability%20Projects.png",
       date: "December 2024",
       location: "Online",
       category: "competition",
