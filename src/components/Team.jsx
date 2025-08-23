@@ -180,11 +180,12 @@ export default function Team() {
                   className="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-xl transition-all duration-300"
                 >
                   <div className="relative flex flex-col items-center bg-white pt-4">
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      className="w-40 h-40 object-cover rounded-full mx-auto mt-6 mb-4 border-4 border-[#F8F9FA] shadow-lg"
-                    />
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        className="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-[#F8F9FA] shadow-lg object-cover mt-6"
+                        style={['Siddhant Gupta','Vedant Ramesh Zanwar'].includes(member.name) ? {objectPosition: 'center 20%'} : {}}
+                      />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#1B4332]/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
                   <div className="p-6 text-center">
