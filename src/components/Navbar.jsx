@@ -33,7 +33,7 @@ export default function Navbar() {
           <div className="flex-shrink-0">
             <a href="#" className="flex items-center">
               <img
-                src="/website/images/Scell-Logo.svg"
+                src="/~sustainabilitycell/images/Scell-Logo.svg"
                 alt="Sustainability Cell Logo"
                 className={`h-16 w-auto transition-all duration-300 ${
                   isScrolled ? "opacity-100" : "opacity-90"
@@ -95,7 +95,7 @@ export default function Navbar() {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="block px-3 py-2 text-base font-medium text-white hover:text-[#9CCC5A]"
+                  className="block px-3 py-2 text-base font-medium text-[#1B4332] hover:text-[#9CCC5A]"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.label}

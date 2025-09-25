@@ -6,25 +6,25 @@ export default function Projects() {
     {
       title: "Green Cup Initiative",
       description: "A comprehensive competition among hostels to promote sustainable practices and reduce environmental impact.",
-      image: "/website/images/greenCup.webp",
+  image: "/~sustainabilitycell/images/greenCup.webp",
       impact: "Reduced waste by 30% across hostels"
     },
     {
       title: "Air Quality Monitoring",
       description: "Implementation of air quality monitoring systems across campus to track and improve air quality.",
-      image: "/website/images/airathon.webp",
+  image: "/~sustainabilitycell/images/airathon.webp",
       impact: "Real-time air quality data available"
     },
     {
       title: "Waste Management",
       description: "Development of an efficient waste segregation and management system for the entire campus.",
-      image: "/website/images/foodw.webp",
+  image: "/~sustainabilitycell/images/foodw.webp",
       impact: "Increased recycling rate by 40%"
     },
     {
       title: "Energy Conservation",
       description: "Implementation of smart energy management systems to optimize power consumption.",
-      image: "/website/images/LHC door.webp",
+  image: "/~sustainabilitycell/images/LHC door.webp",
       impact: "Reduced energy consumption by 25%"
     }
   ];
