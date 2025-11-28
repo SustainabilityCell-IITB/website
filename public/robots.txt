@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gymkhana.iitb.ac.in/~sustainabilitycell/sitemap.xml
