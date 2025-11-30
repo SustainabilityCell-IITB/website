@@ -7,7 +7,7 @@ export default function Hero() {
       <div className="absolute inset-0">
         <img
           src="/~sustainabilitycell/images/main-background.webp"
-          alt="Sustainability Cell Background"
+          alt="Sustainability Cell IIT Bombay Campus Background"
           className="w-full h-full object-cover"
         />
       </div>

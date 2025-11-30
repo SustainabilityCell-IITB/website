@@ -34,7 +34,7 @@ export default function Navbar() {
             <a href="#" className="flex items-center">
               <img
                 src="/~sustainabilitycell/images/Scell-Logo.svg"
-                alt="Sustainability Cell Logo"
+                alt="Sustainability Cell IIT Bombay Logo"
                 className={`h-16 w-auto transition-all duration-300 ${
                   isScrolled ? "opacity-100" : "opacity-90"
                 }`}
