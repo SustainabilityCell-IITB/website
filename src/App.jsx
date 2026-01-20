@@ -1,13 +1,14 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import AboutUs from "./components/AboutUs";
-import Events from "./components/Events";
-import Projects from "./components/Projects";
-import Implementations from "./components/Implementations";
-import Team from "./components/Team";
-import Footer from "./components/Footer";
 import ScrollProgress from './components/ScrollProgress';
+import Footer from "./components/Footer";
+
+// Lazy load heavy components to split the bundle
+const AboutUs = React.lazy(() => import("./components/AboutUs"));
+const Events = React.lazy(() => import("./components/Events"));
+const Implementations = React.lazy(() => import("./components/Implementations"));
+const Team = React.lazy(() => import("./components/Team"));
 
 function App() {
   return (
@@ -15,10 +16,12 @@ function App() {
       <ScrollProgress />
       <Navbar />
       <Hero />
-      <AboutUs />
-      <Events />
-      <Implementations />
-      <Team />
+      <Suspense fallback={<div className="py-20 text-center">Loading...</div>}>
+        <AboutUs />
+        <Events />
+        <Implementations />
+        <Team />
+      </Suspense>
       <Footer />
     </div>
   );

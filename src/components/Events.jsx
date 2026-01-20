@@ -194,6 +194,7 @@ export default function Events() {
                   <img
                     src={event.image}
                     alt={event.title}
+                    loading="lazy"
                     className={`w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 ${
                       event.title === "Sustainium Case Competition" ? "object-center" :
                       event.title === "Corporate-Oriented Projects" ? "object-center" :

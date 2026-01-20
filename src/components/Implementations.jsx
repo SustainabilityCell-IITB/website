@@ -143,6 +143,7 @@ export default function Implementations() {
                         <img
                           src={implementation.image}
                           alt={implementation.title}
+                          loading="lazy"
                           className="w-full h-full object-cover"
                         />
                       </div>

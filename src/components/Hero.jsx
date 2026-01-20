@@ -9,6 +9,7 @@ export default function Hero() {
           src="/~sustainabilitycell/images/main-background.webp"
           alt="Sustainability Cell IIT Bombay Campus Background"
           className="w-full h-full object-cover"
+          fetchpriority="high"
         />
       </div>
 

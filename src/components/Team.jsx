@@ -183,6 +183,7 @@ export default function Team() {
                       <img
                         src={member.image}
                         alt={member.name}
+                        loading="lazy"
                         className="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-[#F8F9FA] shadow-lg object-cover mt-6"
                         style={['Siddhant Gupta','Vedant Ramesh Zanwar'].includes(member.name) ? {objectPosition: 'center 20%'} : {}}
                       />
