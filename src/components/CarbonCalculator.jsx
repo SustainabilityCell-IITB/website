@@ -269,6 +269,23 @@ export default function CarbonCalculator() {
     return "#F44336";
   };
 
+  const progressPercent = Math.round(((currentStep + 1) / STEPS.length) * 100);
+  const stepTips = [
+    "Track shared spaces usage honestly for a realistic score.",
+    "Diet has a large footprint impact. Small weekly choices matter.",
+    "Trip frequency and transport mode quickly increase emissions.",
+    "Water score improves most from shorter showers and fewer long baths.",
+    "Review before submitting to get a more useful baseline score.",
+  ];
+
+  const scoreBand = results
+    ? parseFloat(results.greenScore) >= 7
+      ? "Strong"
+      : parseFloat(results.greenScore) >= 4
+      ? "Moderate"
+      : "Needs Improvement"
+    : "In Progress";
+
   const renderStep = () => {
     switch (currentStep) {
       case 0:
@@ -384,9 +401,12 @@ export default function CarbonCalculator() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#edf8ec] via-white to-[#f2f8ff] py-8 sm:py-10 px-4">
-      <div className="max-w-5xl mx-auto">
-        <div className="flex items-center justify-between mb-4 sm:mb-5">
+    <div className="min-h-screen relative overflow-hidden bg-[radial-gradient(circle_at_15%_20%,#dff2dc_0%,#f4f8f4_35%,#f7f9fc_100%)] py-8 sm:py-10 px-4 sm:px-6">
+      <div className="pointer-events-none absolute -top-24 -left-24 h-72 w-72 rounded-full bg-green-200/35 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-24 -right-20 h-80 w-80 rounded-full bg-sky-200/30 blur-3xl" />
+
+      <div className="max-w-7xl mx-auto relative">
+        <div className="flex items-center justify-between mb-5">
           <a
             href={homeHref}
             className="inline-flex items-center gap-2 text-sm sm:text-base font-semibold text-[#1B4332] hover:text-[#2D6A4F]"
@@ -394,38 +414,39 @@ export default function CarbonCalculator() {
             <span aria-hidden>←</span>
             <span>Back to Website</span>
           </a>
-          <span className="text-xs sm:text-sm text-gray-500">Share link: /green-score</span>
+          <span className="hidden sm:inline text-xs sm:text-sm text-gray-500">Direct link: /green-score</span>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.24 }}
-          className="bg-white rounded-3xl shadow-2xl w-full max-w-4xl mx-auto flex flex-col overflow-hidden"
-          style={{ minHeight: "82vh" }}
-        >
-          {/* Header */}
-          <div
-            className="flex items-center justify-between px-6 py-4 flex-shrink-0"
-            style={{ background: "linear-gradient(90deg, #1B4332 0%, #2D6A4F 100%)" }}
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] gap-5 lg:gap-6 items-start">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.24 }}
+            className="bg-white rounded-3xl shadow-2xl w-full flex flex-col overflow-hidden border border-white/70"
+            style={{ minHeight: "84vh" }}
           >
-            <h2 className="font-bold text-white text-lg leading-tight">Carbon Footprint Calculator</h2>
-            <a
-              href={homeHref}
-              className="px-3 py-2 rounded-xl hover:bg-white/10 transition-colors text-white text-sm font-semibold"
+            {/* Header */}
+            <div
+              className="flex items-center justify-between px-6 py-5 flex-shrink-0"
+              style={{ background: "linear-gradient(105deg, #163f2f 0%, #2d6a4f 55%, #3a7d57 100%)" }}
             >
-              Home
-            </a>
-          </div>
+              <div>
+                <h2 className="font-bold text-white text-xl leading-tight">Green Score Calculator</h2>
+                <p className="text-green-100/90 text-sm mt-1">Estimate your sustainability baseline in under 2 minutes</p>
+              </div>
+              <span className="hidden sm:inline-flex px-3 py-1 rounded-full text-xs font-semibold bg-white/15 text-white border border-white/20">
+                {progressPercent}% Complete
+              </span>
+            </div>
 
-          {results ? (
-            /* ───── RESULTS ───── */
-            <div className="flex-1 overflow-y-auto p-6 sm:p-7">
+            {results ? (
+              /* ───── RESULTS ───── */
+              <div className="flex-1 overflow-y-auto p-6 sm:p-7">
                   {/* Big green score */}
                   <div className="flex flex-col items-center mb-6">
                     <p className="text-sm font-bold text-[#2D6A4F] mb-3 uppercase tracking-wide">Your Green Score</p>
                     <div
-                      className="w-28 h-28 rounded-full flex items-center justify-center text-4xl font-black text-white shadow-lg border-4 border-white"
+                      className="w-32 h-32 rounded-full flex items-center justify-center text-5xl font-black text-white shadow-xl border-4 border-white"
                       style={{ background: `linear-gradient(135deg, ${scoreColor(results.greenScore)}, #1B4332)` }}
                     >
                       {results.greenScore}
@@ -434,7 +455,7 @@ export default function CarbonCalculator() {
                   </div>
 
                   {/* Sub-scores */}
-                  <div className="flex justify-around mb-6">
+                  <div className="flex justify-around mb-6 gap-3">
                     <ScoreCircle value={results.carbonScore} label="Carbon" bg="#4CAF50" />
                     <ScoreCircle value={results.waterScore}  label="Water"  bg="#039BE5" />
                     <ScoreCircle value={results.wasteScore}  label="Waste"  bg="#F59E0B" />
@@ -494,7 +515,7 @@ export default function CarbonCalculator() {
               </div>
 
               {/* Scrollable step content */}
-              <div className="flex-1 overflow-y-auto px-6 py-3">{renderStep()}</div>
+              <div className="flex-1 overflow-y-auto px-6 py-4">{renderStep()}</div>
 
               {/* Navigation */}
               <div className="px-6 py-4 border-t border-gray-100 flex gap-3 flex-shrink-0">
@@ -516,8 +537,67 @@ export default function CarbonCalculator() {
                 </button>
               </div>
             </>
-          )}
-        </motion.div>
+            )}
+          </motion.div>
+
+          <div className="space-y-5 lg:sticky lg:top-8">
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.28, delay: 0.05 }}
+              className="bg-white/95 backdrop-blur rounded-3xl border border-white shadow-xl p-5"
+            >
+              <h3 className="text-[#1B4332] font-bold text-lg mb-2">Session Snapshot</h3>
+              <div className="grid grid-cols-2 gap-3 text-sm">
+                <div className="rounded-2xl bg-green-50 border border-green-100 p-3">
+                  <p className="text-gray-500 text-xs">Current Step</p>
+                  <p className="font-semibold text-[#1B4332]">{STEPS[currentStep].title}</p>
+                </div>
+                <div className="rounded-2xl bg-sky-50 border border-sky-100 p-3">
+                  <p className="text-gray-500 text-xs">Status</p>
+                  <p className="font-semibold text-[#1B4332]">{scoreBand}</p>
+                </div>
+                <div className="rounded-2xl bg-amber-50 border border-amber-100 p-3 col-span-2">
+                  <p className="text-gray-500 text-xs mb-1">Progress</p>
+                  <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                    <div
+                      className="h-full rounded-full"
+                      style={{ width: `${progressPercent}%`, background: "linear-gradient(90deg, #8BC34A 0%, #4CAF50 100%)" }}
+                    />
+                  </div>
+                  <p className="mt-1 text-xs text-gray-600">{progressPercent}% form walkthrough complete</p>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.28, delay: 0.1 }}
+              className="bg-white/95 backdrop-blur rounded-3xl border border-white shadow-xl p-5"
+            >
+              <h3 className="text-[#1B4332] font-bold text-lg mb-3">Smart Tip</h3>
+              <p className="text-sm text-gray-600 leading-relaxed mb-4">{stepTips[currentStep]}</p>
+              <div className="rounded-2xl border border-green-100 bg-green-50 px-4 py-3">
+                <p className="text-xs text-green-700 font-semibold uppercase tracking-wide mb-1">How the score works</p>
+                <p className="text-sm text-green-900">Green Score is the average of Carbon, Water, and Waste scores on a 1-10 scale.</p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.28, delay: 0.15 }}
+              className="bg-[#163f2f] text-white rounded-3xl shadow-xl p-5"
+            >
+              <h3 className="font-bold text-lg mb-2">Need to share this page?</h3>
+              <p className="text-sm text-green-100 mb-4">Send the direct link so others can jump straight into the calculator.</p>
+              <div className="rounded-xl bg-white/10 border border-white/15 px-3 py-2 text-sm font-medium break-all">
+                {window.location.origin}{basePath}/green-score
+              </div>
+            </motion.div>
+          </div>
+        </div>
       </div>
     </div>
   );
