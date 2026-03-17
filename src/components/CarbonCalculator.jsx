@@ -385,17 +385,19 @@ export default function CarbonCalculator() {
 
   return (
     <>
-      {/* ── Floating button (sits to the left of ChatWidget) ── */}
+      {/* ── Floating button (bottom-left, mirrors ChatWidget on bottom-right) ── */}
       <motion.button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-4 right-20 sm:bottom-6 sm:right-24 z-50 w-14 h-14 sm:w-16 sm:h-16 rounded-full shadow-lg hover:shadow-xl flex items-center justify-center"
-        style={{ background: "linear-gradient(135deg, #2D6A4F 0%, #1B4332 100%)" }}
-        whileHover={{ scale: 1.07 }}
+        className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-50 w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-r from-green-600 to-green-500 text-white shadow-lg hover:shadow-xl transition-shadow flex items-center justify-center"
+        whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         aria-label="Open Carbon Footprint Calculator"
         title="Carbon Footprint Calculator"
       >
-        <span className="text-2xl" role="img" aria-hidden>🌱</span>
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 sm:h-7 sm:w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
+        </svg>
       </motion.button>
 
       {/* ── Modal overlay ── */}
@@ -415,8 +417,8 @@ export default function CarbonCalculator() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.93, y: 24 }}
               transition={{ duration: 0.22 }}
-              className="bg-white rounded-3xl shadow-2xl w-full max-w-lg flex flex-col overflow-hidden"
-              style={{ maxHeight: "90vh" }}
+              className="bg-white rounded-3xl shadow-2xl w-full max-w-2xl flex flex-col overflow-hidden"
+              style={{ maxHeight: "92vh" }}
             >
               {/* Header */}
               <div
@@ -425,7 +427,6 @@ export default function CarbonCalculator() {
               >
                 <div>
                   <h2 className="font-bold text-white text-lg leading-tight">Carbon Footprint Calculator</h2>
-                  <p className="text-green-300 text-xs mt-0.5">IITB Campus · All computation is local</p>
                 </div>
                 <button
                   onClick={handleClose}
