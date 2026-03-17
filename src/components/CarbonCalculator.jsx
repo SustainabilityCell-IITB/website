@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 // ============================================================
@@ -112,22 +112,24 @@ const STEPS = [
 // ============================================================
 function OptionGroup({ label, name, value, onChange, options }) {
   return (
-    <div className="mb-5">
-      <label className="block text-sm font-semibold text-gray-700 mb-2">{label}</label>
-      <div className="flex flex-wrap gap-2">
+    <div className="mb-4 rounded-2xl border border-gray-100 bg-white p-3 sm:p-3.5 shadow-sm">
+      <label className="block text-sm font-semibold text-gray-700 mb-2.5">{label}</label>
+      <div className={`grid gap-2.5 ${options.length === 4 ? "grid-cols-2 sm:grid-cols-4" : "grid-cols-2 sm:grid-cols-3"}`}>
         {options.map((opt) => (
-          <button
+          <motion.button
             key={opt.value}
             type="button"
             onClick={() => onChange({ target: { name, value: opt.value } })}
-            className={`px-4 py-2 rounded-full text-sm font-medium border transition-all duration-200 ${
+            className={`w-full px-4 py-2.5 rounded-full text-sm font-semibold border transition-all duration-200 ${
               value === opt.value
-                ? "bg-[#1B4332] text-white border-[#1B4332]"
-                : "bg-white text-gray-600 border-gray-300 hover:border-[#9CCC5A]"
+                ? "bg-gradient-to-r from-[#1B4332] to-[#2D6A4F] text-white border-[#1B4332] shadow-md"
+                : "bg-white text-gray-600 border-gray-300 hover:border-[#9CCC5A] hover:-translate-y-0.5"
             }`}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
           >
             {opt.label}
-          </button>
+          </motion.button>
         ))}
       </div>
     </div>
@@ -135,24 +137,32 @@ function OptionGroup({ label, name, value, onChange, options }) {
 }
 
 function Slider({ label, name, min, max, value, onChange, suffix }) {
+  const percent = ((value - min) / (max - min)) * 100;
   return (
-    <div className="mb-5">
-      <div className="flex justify-between mb-1">
+    <div className="mb-4 rounded-2xl border border-gray-100 bg-white p-3 sm:p-3.5 shadow-sm">
+      <div className="flex justify-between mb-2">
         <label className="text-sm font-semibold text-gray-700">{label}</label>
-        <span className="text-sm font-bold text-[#1B4332]">
+        <span className="text-sm font-bold text-[#1B4332] bg-green-50 px-2.5 py-1 rounded-full border border-green-100">
           {value}
           {suffix ? " " + suffix : ""}
         </span>
       </div>
-      <input
-        type="range"
-        name={name}
-        min={min}
-        max={max}
-        value={value}
-        onChange={onChange}
-        className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-green-600"
-      />
+      <div className="relative py-2">
+        <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-2 bg-gray-200 rounded-full" />
+        <div
+          className="absolute left-0 top-1/2 -translate-y-1/2 h-2 rounded-full bg-gradient-to-r from-[#8BC34A] to-[#4CAF50]"
+          style={{ width: `${percent}%` }}
+        />
+        <input
+          type="range"
+          name={name}
+          min={min}
+          max={max}
+          value={value}
+          onChange={onChange}
+          className="relative z-10 w-full h-2 bg-transparent rounded-lg appearance-none cursor-pointer accent-green-600"
+        />
+      </div>
       <div className="flex justify-between text-xs text-gray-400 mt-1">
         <span>{min}</span>
         <span>{max}</span>
@@ -163,45 +173,125 @@ function Slider({ label, name, min, max, value, onChange, suffix }) {
 
 function HostelSelector({ value, onChange }) {
   const [start, setStart] = useState(1);
-  const PER_PAGE = 7;
+  const [perPage, setPerPage] = useState(7);
   const HOSTEL_MAX = 21;
-  const end = Math.min(start + PER_PAGE - 1, HOSTEL_MAX);
+  const end = Math.min(start + perPage - 1, HOSTEL_MAX);
   const hostels = Array.from({ length: end - start + 1 }, (_, i) => i + start);
+
+  useEffect(() => {
+    const updatePerPage = () => {
+      const w = window.innerWidth;
+      if (w >= 1280) setPerPage(11);
+      else if (w >= 1024) setPerPage(9);
+      else if (w >= 768) setPerPage(7);
+      else setPerPage(5);
+    };
+    updatePerPage();
+    window.addEventListener("resize", updatePerPage);
+    return () => window.removeEventListener("resize", updatePerPage);
+  }, []);
+
+  useEffect(() => {
+    setStart((s) => Math.min(s, Math.max(1, HOSTEL_MAX - perPage + 1)));
+  }, [perPage]);
+
   return (
-    <div className="mb-5">
-      <label className="block text-sm font-semibold text-gray-700 mb-2">Hostel Number</label>
-      <div className="flex items-center gap-1 flex-wrap">
+    <div className="mb-4 rounded-2xl border border-gray-100 bg-white p-3 sm:p-3.5 shadow-sm">
+      <label className="block text-sm font-semibold text-gray-700 mb-3">Hostel Number</label>
+      <div className="flex items-center gap-1.5 flex-wrap sm:flex-nowrap">
         <button
           type="button"
           disabled={start <= 1}
-          onClick={() => setStart((s) => Math.max(1, s - PER_PAGE))}
-          className="px-2 py-1 rounded border text-gray-600 disabled:opacity-30 hover:bg-gray-100 text-lg leading-none"
+          onClick={() => setStart((s) => Math.max(1, s - perPage))}
+          className="w-9 h-9 rounded-full border text-gray-600 disabled:opacity-30 hover:bg-gray-100 text-lg leading-none"
         >
           ‹
         </button>
-        {hostels.map((num) => (
-          <button
-            key={num}
-            type="button"
-            onClick={() => onChange(num)}
-            className={`w-9 h-9 rounded-full text-sm font-bold border transition-all ${
-              value === num
-                ? "bg-[#1B4332] text-white border-[#1B4332]"
-                : "bg-white text-gray-700 border-gray-300 hover:border-[#9CCC5A]"
-            }`}
-          >
-            {num}
-          </button>
-        ))}
+        <div className="flex-1 grid gap-1.5" style={{ gridTemplateColumns: `repeat(${hostels.length}, minmax(0, 1fr))` }}>
+          {hostels.map((num) => (
+            <motion.button
+              key={num}
+              type="button"
+              onClick={() => onChange(num)}
+              className={`w-full h-10 rounded-full text-sm font-bold border transition-all ${
+                value === num
+                  ? "bg-gradient-to-r from-[#1B4332] to-[#2D6A4F] text-white border-[#1B4332] shadow"
+                  : "bg-white text-gray-700 border-gray-300 hover:border-[#9CCC5A] hover:-translate-y-0.5"
+              }`}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              {num}
+            </motion.button>
+          ))}
+        </div>
         <button
           type="button"
           disabled={end >= HOSTEL_MAX}
-          onClick={() => setStart((s) => Math.min(HOSTEL_MAX - PER_PAGE + 1, s + PER_PAGE))}
-          className="px-2 py-1 rounded border text-gray-600 disabled:opacity-30 hover:bg-gray-100 text-lg leading-none"
+          onClick={() => setStart((s) => Math.min(HOSTEL_MAX - perPage + 1, s + perPage))}
+          className="w-9 h-9 rounded-full border text-gray-600 disabled:opacity-30 hover:bg-gray-100 text-lg leading-none"
         >
           ›
         </button>
       </div>
+    </div>
+  );
+}
+
+function StyledSelect({ label, name, value, onChange, options, error }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const wrapperRef = useRef(null);
+  const selected = options.find((opt) => opt.value === value) || options[0];
+
+  useEffect(() => {
+    const handleOutside = (event) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleOutside);
+    return () => document.removeEventListener("mousedown", handleOutside);
+  }, []);
+
+  return (
+    <div className="mb-4 rounded-2xl border border-gray-100 bg-white p-3 sm:p-3.5 shadow-sm" ref={wrapperRef}>
+      <label className="block text-sm font-semibold text-gray-700 mb-2.5">{label}</label>
+      <button
+        type="button"
+        onClick={() => setIsOpen((v) => !v)}
+        className={`w-full p-3.5 border-2 rounded-2xl text-sm bg-gradient-to-r from-white to-green-50/60 text-left flex items-center justify-between transition-colors ${
+          isOpen ? "border-[#7FBF45]" : "border-gray-200"
+        }`}
+      >
+        <span className="font-medium text-gray-700 truncate pr-2">{selected?.label || value}</span>
+        <span className={`text-gray-500 transition-transform ${isOpen ? "rotate-180" : ""}`}>▾</span>
+      </button>
+
+      {isOpen && (
+        <div className="mt-2 rounded-2xl border border-gray-200 bg-white shadow-xl overflow-hidden">
+          <div className="max-h-56 overflow-y-auto">
+            {options.map((opt) => (
+              <button
+                key={opt.value}
+                type="button"
+                onClick={() => {
+                  onChange({ target: { name, value: opt.value, type: "text" } });
+                  setIsOpen(false);
+                }}
+                className={`w-full px-4 py-3 text-left text-sm transition-colors ${
+                  value === opt.value
+                    ? "bg-green-50 text-[#1B4332] font-semibold"
+                    : "text-gray-700 hover:bg-gray-50"
+                }`}
+              >
+                {opt.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
     </div>
   );
 }
@@ -220,10 +310,98 @@ function ScoreCircle({ value, label, bg }) {
   );
 }
 
+function buildIitbRecommendations(inputs, results) {
+  const recs = [];
+
+  if ((inputs.outingsMonth || 0) >= 5 && String(inputs.outingType || "").toLowerCase().includes("cab")) {
+    recs.push({
+      priority: 10,
+      title: "Swap 1-2 cab outings with local/public transport",
+      detail: "For South Mumbai plans, prefer local train and other public transport options instead of full cab trips. Replacing even two cab-heavy outings per month can visibly lower your transport component.",
+    });
+  }
+
+  if ((inputs.foodOrders || 0) >= 6) {
+    recs.push({
+      priority: 9,
+      title: "Cut delivery frequency on weekdays",
+      detail: "Use hostel mess or canteen for 3-4 weekday meals and reserve delivery for weekends. This reduces both packaging waste and delivery emissions around campus.",
+    });
+  }
+
+  if ((inputs.bathDuration || 0) >= 10 || (inputs.showers || 0) >= 8) {
+    recs.push({
+      priority: 8,
+      title: "Shift to bucket-bath on 3 hostel days weekly",
+      detail: "In hostels, replacing a few long showers with bucket-bath days can sharply reduce water use. Start with three days per week and recheck your score next week.",
+    });
+  }
+
+  if (["White Meat Diet", "Red Meat Diet"].includes(inputs.dietType)) {
+    recs.push({
+      priority: 7,
+      title: "Replace 2 weekly meals with veg options",
+      detail: "Try vegetarian or egg-based meals for two weekly meals at campus dining points. This is one of the fastest ways to lower footprint without major lifestyle change.",
+    });
+  }
+
+  if ((inputs.ecommerce || 0) >= 8) {
+    recs.push({
+      priority: 8,
+      title: "Batch e-commerce orders into one monthly cart",
+      detail: "Group non-urgent hostel deliveries into fewer orders. This cuts repeated last-mile trips and packaging waste around campus gates and hostels.",
+    });
+  }
+
+  if ((inputs.eatOutMonth || 0) >= 5 && (inputs.outingsMonth || 0) >= 5) {
+    recs.push({
+      priority: 7,
+      title: "Make one weekend outing low-emission",
+      detail: "Keep one monthly outing nearby (Powai/IITB side) with shared travel and lighter meal footprint. A single recurring change can improve both transport and food components.",
+    });
+  }
+
+  if ((inputs.outingsMonth || 0) >= 5 && String(inputs.outingType || "").toLowerCase().includes("local")) {
+    recs.push({
+      priority: 6,
+      title: "You are already using local, now optimize first/last mile",
+      detail: "Prefer walking or shared rides from station to destination where possible. This keeps your transport footprint lower without reducing social outings.",
+    });
+  }
+
+  if ((inputs.autoRides || 0) >= 5) {
+    recs.push({
+      priority: 8,
+      title: "Use campus EV buggies for internal travel",
+      detail: "If your intra-campus auto usage is high, shift more short internal trips to EV buggies and walking routes where feasible. This lowers daily transport emissions inside IITB.",
+    });
+  }
+
+  if ((inputs.foodOrders || 0) <= 2 && (inputs.ecommerce || 0) <= 2 && (results && parseFloat(results.greenScore) >= 7)) {
+    recs.push({
+      priority: 6,
+      title: "Maintain your current baseline and track monthly",
+      detail: "Your habits are already efficient. Recalculate monthly and mentor friends/wingmates to adopt 1-2 of your current low-footprint practices.",
+    });
+  }
+
+  if ((results && parseFloat(results.greenScore) < 5) || recs.length === 0) {
+    recs.push({
+      priority: 6,
+      title: "Pick one measurable weekly target",
+      detail: "Choose a single IITB-friendly habit for the next 7 days: fewer cab rides, fewer delivery orders, or shorter showers. Recalculate after a week and compare your score.",
+    });
+  }
+
+  recs.sort((a, b) => b.priority - a.priority);
+  return recs.slice(0, 3);
+}
+
 // ============================================================
 // Main export
 // ============================================================
 export default function CarbonCalculator() {
+  const [hasStarted, setHasStarted]   = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData]       = useState({ ...INITIAL_FORM });
   const [errors, setErrors]           = useState({});
@@ -260,7 +438,7 @@ export default function CarbonCalculator() {
   };
 
   const handleBack  = () => { if (currentStep > 0) setCurrentStep((s) => s - 1); };
-  const handleReset = () => { setCurrentStep(0); setFormData({ ...INITIAL_FORM }); setErrors({}); setResults(null); };
+  const handleReset = () => { setCurrentStep(0); setFormData({ ...INITIAL_FORM }); setErrors({}); setResults(null); setHasStarted(false); };
 
   const scoreColor = (s) => {
     const v = parseFloat(s);
@@ -270,21 +448,7 @@ export default function CarbonCalculator() {
   };
 
   const progressPercent = Math.round(((currentStep + 1) / STEPS.length) * 100);
-  const stepTips = [
-    "Track shared spaces usage honestly for a realistic score.",
-    "Diet has a large footprint impact. Small weekly choices matter.",
-    "Trip frequency and transport mode quickly increase emissions.",
-    "Water score improves most from shorter showers and fewer long baths.",
-    "Review before submitting to get a more useful baseline score.",
-  ];
-
-  const scoreBand = results
-    ? parseFloat(results.greenScore) >= 7
-      ? "Strong"
-      : parseFloat(results.greenScore) >= 4
-      ? "Moderate"
-      : "Needs Improvement"
-    : "In Progress";
+  const recommendations = results ? buildIitbRecommendations(formData, results) : [];
 
   const renderStep = () => {
     switch (currentStep) {
@@ -305,23 +469,21 @@ export default function CarbonCalculator() {
       case 1:
         return (
           <>
-            <div className="mb-5">
-              <label className="block text-sm font-semibold text-gray-700 mb-2">Daily Diet</label>
-              <select
-                name="dietType"
-                value={formData.dietType}
-                onChange={handleChange}
-                className="w-full p-3 border-2 border-gray-200 rounded-xl text-sm bg-gray-50 focus:outline-none focus:border-[#9CCC5A]"
-              >
-                <option value="Vegan">Vegan</option>
-                <option value="Vegetarian">Vegetarian</option>
-                <option value="Pescatarian">Pescatarian</option>
-                <option value="Egetarian">Eggetarian</option>
-                <option value="White Meat Diet">White Meat Diet</option>
-                <option value="Red Meat Diet">Red Meat Diet</option>
-              </select>
-              {errors.dietType && <p className="text-red-500 text-xs mt-1">{errors.dietType}</p>}
-            </div>
+            <StyledSelect
+              label="Daily Diet"
+              name="dietType"
+              value={formData.dietType}
+              onChange={handleChange}
+              error={errors.dietType}
+              options={[
+                { label: "Vegan", value: "Vegan" },
+                { label: "Vegetarian", value: "Vegetarian" },
+                { label: "Pescatarian", value: "Pescatarian" },
+                { label: "Eggetarian", value: "Egetarian" },
+                { label: "White Meat Diet", value: "White Meat Diet" },
+                { label: "Red Meat Diet", value: "Red Meat Diet" },
+              ]}
+            />
             <Slider label="Food Orders per Week" name="foodOrders" min={0} max={21} value={formData.foodOrders} onChange={handleChange} suffix="orders" />
           </>
         );
@@ -329,30 +491,28 @@ export default function CarbonCalculator() {
       case 2:
         return (
           <>
-            <div className="mb-5">
-              <label className="block text-sm font-semibold text-gray-700 mb-2">Usual Outing Type</label>
-              <select
-                name="outingType"
-                value={formData.outingType}
-                onChange={handleChange}
-                className="w-full p-3 border-2 border-gray-200 rounded-xl text-sm bg-gray-50 focus:outline-none focus:border-[#9CCC5A]"
-              >
-                <option>South Bombay+Cab+meal</option>
-                <option>South Bombay+local+meal</option>
-                <option>South Bombay+local+cab+meal</option>
-                <option>South Bombay+cab+clubbing</option>
-                <option>Around Powai+cab+meal</option>
-                <option>Around Powai+rickshaw+meal</option>
-                <option>Shopping in a mall+rickshaw</option>
-                <option>Around Powai+rickshaw+movie</option>
-                <option>Around Powai+cab+clubbing</option>
-                <option>Temples in Mumbai+local</option>
-                <option>Trek+local</option>
-                <option>Trek+local+cab</option>
-                <option>Sea-ferry+local</option>
-              </select>
-              {errors.outingType && <p className="text-red-500 text-xs mt-1">{errors.outingType}</p>}
-            </div>
+            <StyledSelect
+              label="Usual Outing Type"
+              name="outingType"
+              value={formData.outingType}
+              onChange={handleChange}
+              error={errors.outingType}
+              options={[
+                { label: "South Bombay + Cab + Meal", value: "South Bombay+Cab+meal" },
+                { label: "South Bombay + Local + Meal", value: "South Bombay+local+meal" },
+                { label: "South Bombay + Local + Cab + Meal", value: "South Bombay+local+cab+meal" },
+                { label: "South Bombay + Cab + Clubbing", value: "South Bombay+cab+clubbing" },
+                { label: "Around Powai + Cab + Meal", value: "Around Powai+cab+meal" },
+                { label: "Around Powai + Rickshaw + Meal", value: "Around Powai+rickshaw+meal" },
+                { label: "Shopping in Mall + Rickshaw", value: "Shopping in a mall+rickshaw" },
+                { label: "Around Powai + Rickshaw + Movie", value: "Around Powai+rickshaw+movie" },
+                { label: "Around Powai + Cab + Clubbing", value: "Around Powai+cab+clubbing" },
+                { label: "Temples in Mumbai + Local", value: "Temples in Mumbai+local" },
+                { label: "Trek + Local", value: "Trek+local" },
+                { label: "Trek + Local + Cab", value: "Trek+local+cab" },
+                { label: "Sea Ferry + Local", value: "Sea-ferry+local" },
+              ]}
+            />
             <OptionGroup label="Outings per Month" name="outingsMonth" value={formData.outingsMonth} onChange={handleChange}
               options={[{ label: "0", value: 0 }, { label: "1–3", value: 2 }, { label: "4–6", value: 5 }, { label: "7+", value: 8 }]} />
             <OptionGroup label="Eating Out per Month" name="eatOutMonth" value={formData.eatOutMonth} onChange={handleChange}
@@ -414,16 +574,15 @@ export default function CarbonCalculator() {
             <span aria-hidden>←</span>
             <span>Back to Website</span>
           </a>
-          <span className="hidden sm:inline text-xs sm:text-sm text-gray-500">Direct link: /green-score</span>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] gap-5 lg:gap-6 items-start">
+        <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.24 }}
             className="bg-white rounded-3xl shadow-2xl w-full flex flex-col overflow-hidden border border-white/70"
-            style={{ minHeight: "84vh" }}
+            style={{ minHeight: "72vh" }}
           >
             {/* Header */}
             <div
@@ -434,12 +593,65 @@ export default function CarbonCalculator() {
                 <h2 className="font-bold text-white text-xl leading-tight">Green Score Calculator</h2>
                 <p className="text-green-100/90 text-sm mt-1">Estimate your sustainability baseline in under 2 minutes</p>
               </div>
-              <span className="hidden sm:inline-flex px-3 py-1 rounded-full text-xs font-semibold bg-white/15 text-white border border-white/20">
-                {progressPercent}% Complete
-              </span>
+              {hasStarted && (
+                <span className="hidden sm:inline-flex px-3 py-1 rounded-full text-xs font-semibold bg-white/15 text-white border border-white/20">
+                  {progressPercent}% Complete
+                </span>
+              )}
             </div>
 
-            {results ? (
+            {!hasStarted ? (
+              <div className="flex-1 p-6 sm:p-8">
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.22 }}
+                  className="rounded-3xl border border-green-100 bg-[linear-gradient(135deg,#f3fff2_0%,#f7fcf7_45%,#ffffff_100%)] p-6 sm:p-7"
+                >
+                  <div className="inline-flex items-center gap-2 mb-3 px-3 py-1 rounded-full bg-green-100 text-green-900 text-xs font-semibold border border-green-200">
+                    <span>🌿</span>
+                    <span>IIT Bombay Student Edition</span>
+                  </div>
+
+                  <h3 className="text-2xl sm:text-3xl font-bold text-[#1B4332] mb-3">Know Your Green Score</h3>
+                  <p className="text-gray-600 mb-5 leading-relaxed text-[15px]">
+                    Measure your campus lifestyle footprint across energy, food, transport, and water.
+                    Answer a few practical questions and get a score with actionable IITB-specific improvements.
+                  </p>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+                    <div className="rounded-2xl border border-gray-200 bg-white px-4 py-3">
+                      <p className="text-xs uppercase tracking-wide text-gray-500 font-semibold">Duration</p>
+                      <p className="text-sm font-semibold text-[#1B4332] mt-1">~2 minutes</p>
+                    </div>
+                    <div className="rounded-2xl border border-gray-200 bg-white px-4 py-3">
+                      <p className="text-xs uppercase tracking-wide text-gray-500 font-semibold">Format</p>
+                      <p className="text-sm font-semibold text-[#1B4332] mt-1">5 short sections</p>
+                    </div>
+                    <div className="rounded-2xl border border-gray-200 bg-white px-4 py-3">
+                      <p className="text-xs uppercase tracking-wide text-gray-500 font-semibold">Output</p>
+                      <p className="text-sm font-semibold text-[#1B4332] mt-1">Score + improvement ideas</p>
+                    </div>
+                  </div>
+
+                  <div className="rounded-2xl border border-amber-100 bg-amber-50 px-4 py-3 mb-6 text-sm text-amber-900">
+                    <p className="font-semibold mb-1">Before you begin</p>
+                    <p className="text-sm text-amber-900">
+                      Use your typical IITB routine (not best-case values). Honest inputs give better and more useful recommendations.
+                    </p>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => setHasStarted(true)}
+                    className="w-full sm:w-auto px-8 py-3 rounded-full font-bold text-white text-sm transition-transform hover:scale-[1.02]"
+                    style={{ background: "linear-gradient(90deg, #8BC34A 0%, #4CAF50 100%)" }}
+                  >
+                    Start →
+                  </button>
+                </motion.div>
+              </div>
+            ) : results ? (
               /* ───── RESULTS ───── */
               <div className="flex-1 overflow-y-auto p-6 sm:p-7">
                   {/* Big green score */}
@@ -486,6 +698,18 @@ export default function CarbonCalculator() {
                     Green Score = average of Carbon, Water & Waste scores (scale 1–10).
                   </p>
 
+                  <div className="rounded-2xl border border-green-100 bg-green-50 p-4 mb-5">
+                    <h3 className="font-bold text-[#1B4332] text-sm mb-3">IITB Action Recommendations</h3>
+                    <div className="space-y-3">
+                      {recommendations.map((rec, idx) => (
+                        <div key={rec.title} className="rounded-xl bg-white border border-green-100 px-3.5 py-3">
+                          <p className="text-sm font-semibold text-[#1B4332]">{rec.title}</p>
+                          <p className="text-sm text-gray-600 mt-1">{rec.detail}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
                   <button
                     onClick={handleReset}
                     className="w-full py-3 rounded-full font-bold text-white text-sm transition-opacity hover:opacity-90"
@@ -512,10 +736,40 @@ export default function CarbonCalculator() {
                   <span>Step {currentStep + 1} of {STEPS.length}</span>
                   <span>{STEPS[currentStep].icon} {STEPS[currentStep].title}</span>
                 </div>
+
+                <div className="mt-3 grid grid-cols-5 gap-2">
+                  {STEPS.map((step, idx) => {
+                    const isActive = idx === currentStep;
+                    const isDone = idx < currentStep;
+                    return (
+                      <div
+                        key={step.title}
+                        className={`rounded-xl px-2 py-2 text-center border text-[11px] sm:text-xs transition-all ${
+                          isActive
+                            ? "bg-green-50 border-green-300 text-[#1B4332] font-semibold"
+                            : isDone
+                            ? "bg-[#1B4332] border-[#1B4332] text-white"
+                            : "bg-white border-gray-200 text-gray-500"
+                        }`}
+                      >
+                        <div>{step.icon}</div>
+                        <div className="truncate">{step.title.split(" ")[0]}</div>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
 
               {/* Scrollable step content */}
-              <div className="flex-1 overflow-y-auto px-6 py-4">{renderStep()}</div>
+              <motion.div
+                key={`step-${currentStep}`}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.2 }}
+                className="flex-1 overflow-y-auto px-6 py-3"
+              >
+                {renderStep()}
+              </motion.div>
 
               {/* Navigation */}
               <div className="px-6 py-4 border-t border-gray-100 flex gap-3 flex-shrink-0">
@@ -523,14 +777,14 @@ export default function CarbonCalculator() {
                   type="button"
                   onClick={handleBack}
                   disabled={currentStep === 0}
-                  className="flex-1 py-3 rounded-full border-2 border-gray-200 text-gray-600 font-semibold text-sm disabled:opacity-30 hover:border-[#9CCC5A] transition-colors"
+                  className="flex-1 py-3 rounded-full border-2 border-gray-200 text-gray-600 font-semibold text-sm disabled:opacity-30 hover:border-[#9CCC5A] hover:bg-green-50/50 transition-colors"
                 >
                   ← Back
                 </button>
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="flex-1 py-3 rounded-full font-bold text-white text-sm transition-opacity hover:opacity-90"
+                  className="flex-1 py-3 rounded-full font-bold text-white text-sm transition-transform hover:scale-[1.01]"
                   style={{ background: "linear-gradient(90deg, #8BC34A 0%, #4CAF50 100%)" }}
                 >
                   {currentStep === STEPS.length - 1 ? "🌿 See My Results" : "Next →"}
@@ -539,64 +793,6 @@ export default function CarbonCalculator() {
             </>
             )}
           </motion.div>
-
-          <div className="space-y-5 lg:sticky lg:top-8">
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.28, delay: 0.05 }}
-              className="bg-white/95 backdrop-blur rounded-3xl border border-white shadow-xl p-5"
-            >
-              <h3 className="text-[#1B4332] font-bold text-lg mb-2">Session Snapshot</h3>
-              <div className="grid grid-cols-2 gap-3 text-sm">
-                <div className="rounded-2xl bg-green-50 border border-green-100 p-3">
-                  <p className="text-gray-500 text-xs">Current Step</p>
-                  <p className="font-semibold text-[#1B4332]">{STEPS[currentStep].title}</p>
-                </div>
-                <div className="rounded-2xl bg-sky-50 border border-sky-100 p-3">
-                  <p className="text-gray-500 text-xs">Status</p>
-                  <p className="font-semibold text-[#1B4332]">{scoreBand}</p>
-                </div>
-                <div className="rounded-2xl bg-amber-50 border border-amber-100 p-3 col-span-2">
-                  <p className="text-gray-500 text-xs mb-1">Progress</p>
-                  <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-                    <div
-                      className="h-full rounded-full"
-                      style={{ width: `${progressPercent}%`, background: "linear-gradient(90deg, #8BC34A 0%, #4CAF50 100%)" }}
-                    />
-                  </div>
-                  <p className="mt-1 text-xs text-gray-600">{progressPercent}% form walkthrough complete</p>
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.28, delay: 0.1 }}
-              className="bg-white/95 backdrop-blur rounded-3xl border border-white shadow-xl p-5"
-            >
-              <h3 className="text-[#1B4332] font-bold text-lg mb-3">Smart Tip</h3>
-              <p className="text-sm text-gray-600 leading-relaxed mb-4">{stepTips[currentStep]}</p>
-              <div className="rounded-2xl border border-green-100 bg-green-50 px-4 py-3">
-                <p className="text-xs text-green-700 font-semibold uppercase tracking-wide mb-1">How the score works</p>
-                <p className="text-sm text-green-900">Green Score is the average of Carbon, Water, and Waste scores on a 1-10 scale.</p>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.28, delay: 0.15 }}
-              className="bg-[#163f2f] text-white rounded-3xl shadow-xl p-5"
-            >
-              <h3 className="font-bold text-lg mb-2">Need to share this page?</h3>
-              <p className="text-sm text-green-100 mb-4">Send the direct link so others can jump straight into the calculator.</p>
-              <div className="rounded-xl bg-white/10 border border-white/15 px-3 py-2 text-sm font-medium break-all">
-                {window.location.origin}{basePath}/green-score
-              </div>
-            </motion.div>
-          </div>
         </div>
       </div>
     </div>
