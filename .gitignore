@@ -1,5 +1,6 @@
 # Dependencies
 /node_modules
+**/node_modules
 /.pnp
 .pnp.js
 
@@ -26,3 +27,8 @@ yarn-error.log*
 .vscode/
 *.swp
 *.swo 
+
+# Reference projects
+references/
+references/**/venv/
+references/**/__pycache__/
