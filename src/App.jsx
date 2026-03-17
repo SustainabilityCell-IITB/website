@@ -4,6 +4,7 @@ import Hero from "./components/Hero";
 import ScrollProgress from './components/ScrollProgress';
 import Footer from "./components/Footer";
 import ChatWidget from "./components/ChatWidget";
+import CarbonCalculator from "./components/CarbonCalculator";
 
 // Lazy load heavy components to split the bundle
 const AboutUs = React.lazy(() => import("./components/AboutUs"));
@@ -24,6 +25,7 @@ function App() {
         <Team />
       </Suspense>
       <Footer />
+      <CarbonCalculator />
       <ChatWidget />
     </div>
   );
