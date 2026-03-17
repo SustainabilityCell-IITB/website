@@ -13,6 +13,14 @@ const Implementations = React.lazy(() => import("./components/Implementations"))
 const Team = React.lazy(() => import("./components/Team"));
 
 function App() {
+  const basePath = (import.meta.env.BASE_URL || "").replace(/\/$/, "");
+  const currentPath = window.location.pathname.replace(/\/$/, "");
+  const isGreenScorePage = currentPath === `${basePath}/green-score` || currentPath.endsWith("/green-score");
+
+  if (isGreenScorePage) {
+    return <CarbonCalculator />;
+  }
+
   return (
     <div className="min-h-screen bg-white">
       <ScrollProgress />
@@ -25,7 +33,6 @@ function App() {
         <Team />
       </Suspense>
       <Footer />
-      <CarbonCalculator />
       <ChatWidget />
     </div>
   );

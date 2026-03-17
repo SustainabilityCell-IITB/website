@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const basePath = (import.meta.env.BASE_URL || "").replace(/\/$/, "");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,7 +18,8 @@ export default function Navbar() {
     { href: "#about", label: "About" },
     { href: "#events", label: "Events" },
     { href: "#implementations", label: "Implementations" },
-    { href: "#team", label: "Contact" }
+    { href: "#team", label: "Contact" },
+    { href: `${basePath}/green-score`, label: "Green Score" }
   ];
 
   return (
@@ -31,7 +33,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
         <div className="flex justify-between items-center h-20">
           <div className="flex-shrink-0">
-            <a href="#" className="flex items-center">
+            <a href={`${basePath}/`} className="flex items-center">
               <img
                 src="/~sustainabilitycell/images/Scell-Logo.svg"
                 alt="Sustainability Cell IIT Bombay Logo"

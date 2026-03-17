@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 // ============================================================
 // Pure client-side score computation (no backend needed)
@@ -224,11 +224,12 @@ function ScoreCircle({ value, label, bg }) {
 // Main export
 // ============================================================
 export default function CarbonCalculator() {
-  const [isOpen, setIsOpen]           = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData]       = useState({ ...INITIAL_FORM });
   const [errors, setErrors]           = useState({});
   const [results, setResults]         = useState(null);
+  const basePath = (import.meta.env.BASE_URL || "").replace(/\/$/, "");
+  const homeHref = `${basePath}/`;
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -260,7 +261,6 @@ export default function CarbonCalculator() {
 
   const handleBack  = () => { if (currentStep > 0) setCurrentStep((s) => s - 1); };
   const handleReset = () => { setCurrentStep(0); setFormData({ ...INITIAL_FORM }); setErrors({}); setResults(null); };
-  const handleClose = () => setIsOpen(false);
 
   const scoreColor = (s) => {
     const v = parseFloat(s);
@@ -384,64 +384,43 @@ export default function CarbonCalculator() {
   };
 
   return (
-    <>
-      {/* ── Floating button (bottom-left, mirrors ChatWidget on bottom-right) ── */}
-      <motion.button
-        onClick={() => setIsOpen(true)}
-        className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-50 w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-r from-green-600 to-green-500 text-white shadow-lg hover:shadow-xl transition-shadow flex items-center justify-center"
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        aria-label="Open Carbon Footprint Calculator"
-        title="Carbon Footprint Calculator"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 sm:h-7 sm:w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z" />
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
-        </svg>
-      </motion.button>
-
-      {/* ── Modal overlay ── */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            key="calc-backdrop"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
-            style={{ background: "rgba(0,0,0,0.55)", backdropFilter: "blur(4px)" }}
+    <div className="min-h-screen bg-gradient-to-br from-[#edf8ec] via-white to-[#f2f8ff] py-8 sm:py-10 px-4">
+      <div className="max-w-5xl mx-auto">
+        <div className="flex items-center justify-between mb-4 sm:mb-5">
+          <a
+            href={homeHref}
+            className="inline-flex items-center gap-2 text-sm sm:text-base font-semibold text-[#1B4332] hover:text-[#2D6A4F]"
           >
-            <motion.div
-              key="calc-card"
-              initial={{ opacity: 0, scale: 0.93, y: 24 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.93, y: 24 }}
-              transition={{ duration: 0.22 }}
-              className="bg-white rounded-3xl shadow-2xl w-full max-w-2xl flex flex-col overflow-hidden"
-              style={{ maxHeight: "92vh" }}
-            >
-              {/* Header */}
-              <div
-                className="flex items-center justify-between px-6 py-4 flex-shrink-0"
-                style={{ background: "linear-gradient(90deg, #1B4332 0%, #2D6A4F 100%)" }}
-              >
-                <div>
-                  <h2 className="font-bold text-white text-lg leading-tight">Carbon Footprint Calculator</h2>
-                </div>
-                <button
-                  onClick={handleClose}
-                  className="p-2 rounded-xl hover:bg-white/10 transition-colors text-white"
-                  aria-label="Close calculator"
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
+            <span aria-hidden>←</span>
+            <span>Back to Website</span>
+          </a>
+          <span className="text-xs sm:text-sm text-gray-500">Share link: /green-score</span>
+        </div>
 
-              {results ? (
-                /* ───── RESULTS ───── */
-                <div className="flex-1 overflow-y-auto p-6">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.24 }}
+          className="bg-white rounded-3xl shadow-2xl w-full max-w-4xl mx-auto flex flex-col overflow-hidden"
+          style={{ minHeight: "82vh" }}
+        >
+          {/* Header */}
+          <div
+            className="flex items-center justify-between px-6 py-4 flex-shrink-0"
+            style={{ background: "linear-gradient(90deg, #1B4332 0%, #2D6A4F 100%)" }}
+          >
+            <h2 className="font-bold text-white text-lg leading-tight">Carbon Footprint Calculator</h2>
+            <a
+              href={homeHref}
+              className="px-3 py-2 rounded-xl hover:bg-white/10 transition-colors text-white text-sm font-semibold"
+            >
+              Home
+            </a>
+          </div>
+
+          {results ? (
+            /* ───── RESULTS ───── */
+            <div className="flex-1 overflow-y-auto p-6 sm:p-7">
                   {/* Big green score */}
                   <div className="flex flex-col items-center mb-6">
                     <p className="text-sm font-bold text-[#2D6A4F] mb-3 uppercase tracking-wide">Your Green Score</p>
@@ -493,55 +472,53 @@ export default function CarbonCalculator() {
                   >
                     🔄 Calculate Again
                   </button>
+            </div>
+          ) : (
+            /* ───── QUESTIONNAIRE ───── */
+            <>
+              {/* Progress bar */}
+              <div className="px-6 pt-4 flex-shrink-0">
+                <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                  <div
+                    className="h-full rounded-full transition-all duration-300"
+                    style={{
+                      width: `${((currentStep + 1) / STEPS.length) * 100}%`,
+                      background: "linear-gradient(90deg, #8BC34A 0%, #4CAF50 100%)",
+                    }}
+                  />
                 </div>
-              ) : (
-                /* ───── QUESTIONNAIRE ───── */
-                <>
-                  {/* Progress bar */}
-                  <div className="px-6 pt-4 flex-shrink-0">
-                    <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-                      <div
-                        className="h-full rounded-full transition-all duration-300"
-                        style={{
-                          width: `${((currentStep + 1) / STEPS.length) * 100}%`,
-                          background: "linear-gradient(90deg, #8BC34A 0%, #4CAF50 100%)",
-                        }}
-                      />
-                    </div>
-                    <div className="flex justify-between text-xs text-gray-400 mt-1 mb-1">
-                      <span>Step {currentStep + 1} of {STEPS.length}</span>
-                      <span>{STEPS[currentStep].icon} {STEPS[currentStep].title}</span>
-                    </div>
-                  </div>
+                <div className="flex justify-between text-xs text-gray-400 mt-1 mb-1">
+                  <span>Step {currentStep + 1} of {STEPS.length}</span>
+                  <span>{STEPS[currentStep].icon} {STEPS[currentStep].title}</span>
+                </div>
+              </div>
 
-                  {/* Scrollable step content */}
-                  <div className="flex-1 overflow-y-auto px-6 py-3">{renderStep()}</div>
+              {/* Scrollable step content */}
+              <div className="flex-1 overflow-y-auto px-6 py-3">{renderStep()}</div>
 
-                  {/* Navigation */}
-                  <div className="px-6 py-4 border-t border-gray-100 flex gap-3 flex-shrink-0">
-                    <button
-                      type="button"
-                      onClick={handleBack}
-                      disabled={currentStep === 0}
-                      className="flex-1 py-3 rounded-full border-2 border-gray-200 text-gray-600 font-semibold text-sm disabled:opacity-30 hover:border-[#9CCC5A] transition-colors"
-                    >
-                      ← Back
-                    </button>
-                    <button
-                      type="button"
-                      onClick={handleNext}
-                      className="flex-1 py-3 rounded-full font-bold text-white text-sm transition-opacity hover:opacity-90"
-                      style={{ background: "linear-gradient(90deg, #8BC34A 0%, #4CAF50 100%)" }}
-                    >
-                      {currentStep === STEPS.length - 1 ? "🌿 See My Results" : "Next →"}
-                    </button>
-                  </div>
-                </>
-              )}
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+              {/* Navigation */}
+              <div className="px-6 py-4 border-t border-gray-100 flex gap-3 flex-shrink-0">
+                <button
+                  type="button"
+                  onClick={handleBack}
+                  disabled={currentStep === 0}
+                  className="flex-1 py-3 rounded-full border-2 border-gray-200 text-gray-600 font-semibold text-sm disabled:opacity-30 hover:border-[#9CCC5A] transition-colors"
+                >
+                  ← Back
+                </button>
+                <button
+                  type="button"
+                  onClick={handleNext}
+                  className="flex-1 py-3 rounded-full font-bold text-white text-sm transition-opacity hover:opacity-90"
+                  style={{ background: "linear-gradient(90deg, #8BC34A 0%, #4CAF50 100%)" }}
+                >
+                  {currentStep === STEPS.length - 1 ? "🌿 See My Results" : "Next →"}
+                </button>
+              </div>
+            </>
+          )}
+        </motion.div>
+      </div>
+    </div>
   );
 }
