@@ -9,6 +9,18 @@ export default function Implementations() {
 
   const implementations = [
     {
+      title: "Waterless Urinals",
+      shortDescription: "Zerodor-based waterless urinal system implemented to reduce water use and improve hygiene.",
+      fullDescription: "The Waterless Urinals initiative replaced conventional flushing systems with Zerodor technology using a mechanical float valve and airtight seal. This enabled water-free operation while preventing odor escape. The implementation delivered major impact through annual savings of around 150,000 liters of water, improved hygiene by eliminating bacterial spray from flushing, and lower maintenance due to touch-free operation.",
+      image: "/~sustainabilitycell/images/Waterless%20Urinals.png"
+    },
+    {
+      title: "Waste SOP Awareness & Videos",
+      shortDescription: "Awareness videos and SOP communication for better segregation and waste handling consistency.",
+      fullDescription: "The Waste SOP Awareness & Videos initiative strengthened campus waste management through clear and accessible visual guidance. Informative videos demonstrated segregation, disposal, and handling protocols for students, staff, and workers. This improved SOP adherence, reduced improper disposal, and helped build a stronger culture of accountability and sustainability across campus operations.",
+      image: "/~sustainabilitycell/images/Waste%20SOP%20video.jpg"
+    },
+    {
       title: "EV Buggy Stops",
       shortDescription: "Strategic implementation of EV buggy stops at high-traffic areas for optimized usage and enhanced efficiency.",
       fullDescription: "EV buggy stops were strategically implemented at high-traffic areas, including the Lecture Hall Complex and student residential zones. This initiative aimed to optimize their usage by ensuring convenient access while enhancing battery efficiency and reducing idle time.",
@@ -145,6 +157,13 @@ export default function Implementations() {
                           alt={implementation.title}
                           loading="lazy"
                           className="w-full h-full object-cover"
+                          style={{
+                            objectPosition: implementation.title === "Waterless Urinals"
+                              ? "center 34%"
+                              : implementation.title === "Waste SOP Awareness & Videos"
+                              ? "center 45%"
+                              : "center"
+                          }}
                         />
                       </div>
                       <div className="p-6">

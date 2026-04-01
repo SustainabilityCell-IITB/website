@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedSectionHeader from "./AnimatedSectionHeader";
 
 export default function Events() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [expandedDescriptions, setExpandedDescriptions] = useState({});
+  const [showAll, setShowAll] = useState(false);
+  const [displayLimit] = useState(6);
+
+  useEffect(() => {
+    setShowAll(false);
+  }, [selectedCategory, displayLimit]);
 
   const toggleDescription = (eventTitle) => {
     setExpandedDescriptions(prev => ({
@@ -14,6 +20,97 @@ export default function Events() {
   };
 
   const events = [
+    {
+      title: "Winter Projects 2.0",
+      description: "Winter Projects 2.0 gave students hands-on exposure to sustainability problem-solving in real organizational contexts. Structured around clear problem statements, participants applied practical frameworks across supply chains, ESG, climate analysis, and sustainable finance to produce outcome-driven deliverables.",
+      image: "/~sustainabilitycell/images/Winter%20Projects%202025.jpg",
+      date: "December 2025",
+      location: "IIT Bombay",
+      category: "competition",
+      stats: {
+        domains: "Supply chain, ESG, climate analysis, sustainable finance",
+        approach: "Framework-led project execution",
+        output: "Defined deliverables with real-world relevance"
+      }
+    },
+    {
+      title: "Freshers' Orientation 2025",
+      description: "Sponsored by Roar for Good, the Sustainability Cell's Freshers' Orientation introduced first-year students to campus sustainability initiatives and participation opportunities. The session featured Green Cup launch moments, Green Score Calculator introduction, interactive quizzes, and engagement activities to encourage active contribution from day one.",
+      image: "/~sustainabilitycell/images/Orientation%202025.png",
+      date: "October 2025",
+      location: "IIT Bombay",
+      category: "orientation",
+      stats: {
+        sponsor: "Roar for Good",
+        highlights: "Green Cup, Green Score Calculator, quizzes",
+        goal: "Early student engagement in sustainability action"
+      }
+    },
+    {
+      title: "Green Cup Award Ceremony",
+      description: "At the Green Cup award ceremony, updated scoring metrics were introduced to encourage stronger hostel-led sustainability initiatives through representation and on-ground action. The next Green Cup cycle was launched, and previous winners were recognized: Hostel 5 (winner), Hostel 13 (1st runner-up), and Hostel 17 (2nd runner-up).",
+      image: "/~sustainabilitycell/images/Green%20Cup%20Award%20Ceremony.jpg",
+      date: "October 2025",
+      location: "IIT Bombay",
+      category: "awareness",
+      stats: {
+        initiative: "Inter-hostel Green Cup flagship",
+        update: "New scoring metrics for representation and initiatives",
+        winners: "H5 winner, H13 runner-up, H17 second runner-up"
+      }
+    },
+    {
+      title: "Sustainium - Sustainability Product Case Competition",
+      description: "Sustainium was organized with Elima as a flagship technical case competition focused on scalable e-waste recycling and polymer recovery solutions. Teams developed hardware-software integrated prototypes and proposed practical interventions for material circularity, applying engineering and systems thinking to real sustainability challenges.",
+      image: "/~sustainabilitycell/images/Sustainium%202025.png",
+      date: "October 2025",
+      location: "IIT Bombay",
+      category: "competition",
+      stats: {
+        collaboration: "In partnership with Elima",
+        challenge: "E-waste recycling and polymer recovery",
+        focus: "Scalable product-level sustainability solutions"
+      }
+    },
+    {
+      title: "Carbon Removal Workshop",
+      description: "This workshop introduced students to nature-based and technology-driven carbon removal pathways, including forest and soil sequestration as well as direct air capture. In collaboration with REMOVE, a Europe-based climate accelerator, participants learned how early-stage ventures and research efforts create real-world climate impact.",
+      image: "/~sustainabilitycell/images/Carbon%20Removal%20Workshop.png",
+      date: "October 2025",
+      location: "IIT Bombay",
+      category: "workshop",
+      stats: {
+        methods: "Sequestration, direct air capture",
+        collaboration: "REMOVE climate accelerator",
+        outcome: "Startup and career insights in carbon removal"
+      }
+    },
+    {
+      title: "Careers in Sustainability Talk with Career Cell",
+      description: "Organized jointly by the Sustainability Cell and Career Cell, this session explored purpose-driven careers in the green economy. Shubhankar Mihir Seth (IITB 2020, Sharad Maloo Memorial Gold Medalist) shared his journey from IIT Bombay to Stanford and his work at McKinsey, highlighting how technical and analytical skills can drive impact through ESG and climate-focused consulting.",
+      image: "/~sustainabilitycell/images/Careers%20in%20Sustainability%20Session.png",
+      date: "July 2025",
+      location: "IIT Bombay",
+      category: "talk",
+      stats: {
+        speaker: "Shubhankar Mihir Seth (IITB 2020)",
+        focus: "ESG, climate consulting, career pathways",
+        impact: "Bridged academic excellence with global sustainability impact"
+      }
+    },
+    {
+      title: "Learners' Space Course",
+      description: "Under the Learners' Space 2025 (9th edition revamp), the Sustainability Cell collaborated with Career Cell, UGAC, and sustainability-focused student teams to run the Sustainability Summer School. The program covered sustainable technologies, policy, and economics through practical and interdisciplinary learning modules.",
+      image: "/~sustainabilitycell/images/Learner%27s%20Space.png",
+      date: "June 2025",
+      location: "IIT Bombay",
+      category: "workshop",
+      stats: {
+        collaboration: "Career Cell, UGAC, Team Shunya, Team Zero Waste",
+        courses: "Technology, policy, and sustainability economics",
+        format: "Interdisciplinary summer learning"
+      }
+    },
     {
       title: "Sustainium Case Competition",
       description: "A nationwide case competition organized in collaboration with Tarutium Global Consulting, focusing on innovative waste management solutions. Launched on 24th January via Unstop, it received 500+ registrations from across India. The event promoted practical problem-solving in sustainability, with winners receiving cash prizes and pre-placement interview (PPI) opportunities, bridging the gap between environmental challenges and industry engagement.",
@@ -141,6 +238,9 @@ export default function Events() {
     selectedCategory === "all" || event.category === selectedCategory
   );
 
+  const displayedEvents = showAll ? filteredEvents : filteredEvents.slice(0, displayLimit);
+  const hasMoreEvents = filteredEvents.length > displayLimit;
+
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -152,8 +252,18 @@ export default function Events() {
     }
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+      },
+    },
+  };
+
   return (
-    <section id="events" className="py-20 bg-[#F8F9FA]">
+    <section id="events" className="py-20 bg-[linear-gradient(180deg,#f8f9fa_0%,#f4f7f5_100%)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSectionHeader
           title="Our Events"
@@ -161,10 +271,13 @@ export default function Events() {
         />
 
         {/* Category Filter Section */}
-        <div className="mb-8 flex justify-center">
-          <div className="flex flex-wrap gap-2">
+        <div className="mb-8 flex flex-col items-center gap-4">
+          <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-white border border-[#d8e7da] text-sm text-[#2D6A4F] font-medium shadow-sm">
+            Showing latest {showAll ? filteredEvents.length : Math.min(displayLimit, filteredEvents.length)} of {filteredEvents.length} events
+          </div>
+          <div className="flex flex-wrap gap-2 p-2 rounded-2xl bg-white/90 border border-[#e1ece3] shadow-sm">
             {categories.map(category => (
-              <button
+              <motion.button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 ${
@@ -172,23 +285,34 @@ export default function Events() {
                     ? "bg-[#1B4332] text-white"
                     : "bg-white text-[#1B4332] hover:bg-[#9CCC5A] hover:text-white"
                 }`}
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
               >
                 {category.label}
-              </button>
+              </motion.button>
             ))}
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <AnimatePresence>
-            {filteredEvents.map((event, index) => (
+        <motion.div
+          key={`${selectedCategory}-${showAll}-${displayLimit}`}
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          <AnimatePresence mode="popLayout">
+            {displayedEvents.map((event, index) => (
               <motion.div
                 key={event.title}
                 variants={cardVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
+                whileHover={{ y: -6 }}
+                transition={{ duration: 0.25 }}
+                className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group border border-white/60"
               >
                 <div className="relative h-48 overflow-hidden">
                   <img
@@ -202,6 +326,11 @@ export default function Events() {
                     }`}
                     style={{
                       objectPosition: event.title === "Sustainium Case Competition" ? "center 38%" :
+                                     event.title === "Green Cup Award Ceremony" ? "center 50%" :
+                                     event.title === "Freshers' Orientation 2025" ? "center 45%" :
+                                     event.title === "Carbon Removal Workshop" ? "center 50%" :
+                                     event.title === "Sustainium - Sustainability Product Case Competition" ? "center 42%" :
+                                     event.title === "Careers in Sustainability Talk with Career Cell" ? "center 25%" :
                                      event.title === "Corporate-Oriented Projects" ? "center 5%" :
                                      event.title === "SustAInify" ? "center 25%" : "center 10%"
                     }}
@@ -273,7 +402,29 @@ export default function Events() {
               </motion.div>
             ))}
           </AnimatePresence>
-        </div>
+        </motion.div>
+
+        {hasMoreEvents && (
+          <div className="mt-10 flex justify-center">
+            <motion.button
+              type="button"
+              onClick={() => setShowAll((prev) => !prev)}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              className="px-6 py-3 rounded-full bg-[#1B4332] text-white font-semibold shadow-md hover:bg-[#2D6A4F] transition-colors flex items-center gap-2"
+            >
+              {showAll ? "Show Latest" : "See More"}
+              <svg
+                className={`w-4 h-4 transition-transform ${showAll ? "rotate-180" : ""}`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </motion.button>
+          </div>
+        )}
       </div>
     </section>
   );
