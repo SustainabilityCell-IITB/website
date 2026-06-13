@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 // ===========================================
 // API Configuration
 // ===========================================
-const API_BASE_URL = 'https://sustainability-chatbot-api.onrender.com';
+const API_BASE_URL = 'https://sustainability-chatbot-73rj.onrender.com';
 // ===========================================
 
 const ChatWidget = () => {
