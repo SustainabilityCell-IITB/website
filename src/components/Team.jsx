@@ -4,109 +4,109 @@ import AnimatedSectionHeader from "./AnimatedSectionHeader";
 const teamMembers = {
   "Overall Co-ordinators": [
     {
-      name: "Shreyas Kulkarni",
+      name: "Ojas Goel",
       role: "Overall Coordinator",
-      phone: "7385713978",
-      email: "22b1510@iitb.ac.in",
-      linkedin: "https://www.linkedin.com/in/shreyas-kulkarni-iitb",
+      phone: "8369487362",
+      email: "23b0348@iitb.ac.in",
+      linkedin: "https://www.linkedin.com/in/goelojas/",
       whatsapp: "",
-  image: "/~sustainabilitycell/images/Shreyas.jpg"
+  image: ""
     },
     {
-      name: "P N Pranav Yadav",
+      name: "Vedant Zanwar ",
       role: "Overall Coordinator",
-      phone: "9686366569",
+      phone: "8087012399",
       email: "",
-      linkedin: "",
-      whatsapp: "",
-  image: "/~sustainabilitycell/images/Pranav.jpeg"
+      linkedin: "https://www.linkedin.com/in/vedant-zanwar-1137ba27b/",
+      whatsapp: "8087012399",
+  image: ""
     }
   ],
   "Projects and Policies": [
     {
-      name: "Arth Trivedy",
+      name: "Venna Karthik Reddy",
       role: "Manager",
-      phone: "8368009080",
-      email: "trivedyarth@gmail.com",
-      linkedin: "www.linkedin.com/in/arth-trivedy-79875a224",
-      whatsapp: "",
-  image: "/~sustainabilitycell/images/Arth.jpeg"
+      phone: "8977243111",
+      email: "",
+      linkedin: "https://www.linkedin.com/in/vennakarthik/",
+      whatsapp: "8977243111",
+  image: ""
     },
     {
-      name: "Siddhant Gupta",
+      name: "Udit Mittal",
       role: "Manager",
-      phone: "9167095841",
-      email: "siddhant2804@gmail.com",
-      linkedin: "https://www.linkedin.com/in/siddhantgupta-iit/",
-      whatsapp: "",
-  image: "/~sustainabilitycell/images/Siddhant.jpg"
+      phone: "9660807580",
+      email: "udit.sustainabilitycell.iitb@gmail.com",
+      linkedin: "",
+      whatsapp: "9660807580",
+  image: ""
     },
     {
-      name: "Vinayak Jalan",
+      name: "Tirth Tanna",
       role: "Manager",
-      phone: "7043772478",
-      email: "vinayakjalan010@gmail.com",
-      linkedin: "https://www.linkedin.com/in/vinayak-jalan-6218ba230/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-      whatsapp: "",
-  image: "/~sustainabilitycell/images/Vinayak.jpeg"
+      phone: "7572994432",
+      email: "",
+      linkedin: "",
+      whatsapp: "7572994432",
+  image: ""
     }
   ],
   "Events and Operations": [
     {
-      name: "Ojas Goel",
+      name: "Arth Agrawal",
       role: "Manager",
-      phone: "8369487362",
-      email: "ojas.suscell@gmail.com",
-      linkedin: "https://www.linkedin.com/in/ojas-goel-069a85178/",
-      whatsapp: "",
-  image: "/~sustainabilitycell/images/Ojas.png"
+      phone: "8827530300",
+      email: "arth.sustainabilitycell.iitb@gmail.com",
+      linkedin: "https://www.linkedin.com/in/arth-agrawal-902774331/",
+      whatsapp: "8827530300",
+  image: ""
     },
     {
-      name: "Vedant Ramesh Zanwar",
+      name: "Dilip Karwasra",
       role: "Manager",
-      phone: "8087012399",
-      email: "vedantz.scell.iitb@gmail.com",
-      linkedin: "https://www.linkedin.com/in/vedant-zanwar-1137ba27b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-      whatsapp: "",
-  image: "/~sustainabilitycell/images/Vedant.jpg"
+      phone: "7740975355",
+      email: "dilip.suscell.iitb@gmail.com",
+      linkedin: "https://www.linkedin.com/in/dilip-karwasra-5a3b87337/",
+      whatsapp: "7740975355",
+  image: ""
     },
     {
-      name: "Aditya Agarwal",
+      name: "Anoushka Manchala ",
       role: "Manager",
-      phone: "9065130206",
-      email: "adityaagarwal0808@gmail.com",
-      linkedin: "www.linkedin.com/in/aditya-agarwal-a01500297",
-      whatsapp: "",
-  image: "/~sustainabilitycell/images/Aditya.jpg"
+      phone: "9867114325",
+      email: "anoushka.suscell@gmail.com",
+      linkedin: "https://www.linkedin.com/in/anoushka-manchala-1633a9257/",
+      whatsapp: "9867114325",
+  image: ""
     }
   ],
-  "Web and Design": [
+  "Web, Media and Design": [
     {
-      name: "Yashashree",
+      name: "Kaushik Ravuthu",
       role: "Manager",
-      phone: "8866255358",
-      email: "yashashree.sustanabilitycell@gmail.com",
-      linkedin: "www.linkedin.com/in/yashashree-charki-73908126b",
-      whatsapp: "",
-  image: "/~sustainabilitycell/images/Yashashree.jpg"
+      phone: "8668339066",
+      email: "kaushik.sustainabilitycell@gmail.com",
+      linkedin: "https://www.linkedin.com/in/kaushik-ravuthu/",
+      whatsapp: "8668339066",
+  image: ""
     },
     {
-      name: "Krishna Gahlod",
+      name: "Hardik Garg",
       role: "Manager",
-      phone: "9171241889",
-      email: "krishnagahlod@gmail.com",
-      linkedin: "https://www.linkedin.com/in/krishna-gahlod-65143927b/",
-      whatsapp: "",
-  image: "/~sustainabilitycell/images/Krishna.png"
+      phone: "9680403262",
+      email: "hardik.sustainabilitycell.iitb@gmail.com",
+      linkedin: "https://www.linkedin.com/in/hardik-garg-372222317/",
+      whatsapp: "9680403262",
+  image: ""
     },
     {
-      name: "Mohita",
+      name: "Aanshi Loladia",
       role: "Manager",
-      phone: "",
+      phone: "7020632458",
       email: "",
-      linkedin: "https://www.linkedin.com/in/mohita-shanmugam?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-      whatsapp: "",
-  image: "/~sustainabilitycell/images/Mohita.jpg"
+      linkedin: "https://www.linkedin.com/in/aanshiloladia/",
+      whatsapp: "7020632458",
+  image: ""
     }
   ]
 };
