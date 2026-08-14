@@ -8,6 +8,7 @@ export default defineConfig({
     react(),
     viteCompression()
   ],
+  assetsInclude: ['**/*.JPG'],
   base: '/~sustainabilitycell/',
   build: {
     outDir: 'dist',
