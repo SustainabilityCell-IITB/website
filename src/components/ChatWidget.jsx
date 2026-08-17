@@ -124,6 +124,22 @@ const ChatWidget = () => {
 
   return (
     <>
+      {/* Green Map shortcut */}
+      <motion.a
+        href="https://gymkhana.iitb.ac.in/~sustainabilitycell/GreenMap/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-20 right-4 sm:bottom-28 sm:right-6 z-50 w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-r from-green-600 to-green-500 text-white shadow-lg hover:shadow-xl transition-shadow flex items-center justify-center"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        aria-label="Open the IIT Bombay Green Map"
+        title="Explore the Green Map"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 sm:h-7 sm:w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4.5m0 12V4.5m0 0L9 7" />
+        </svg>
+      </motion.a>
+
       {/* Floating Button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}

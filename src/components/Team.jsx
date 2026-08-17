@@ -12,6 +12,7 @@ import arthPhoto from "../../images/Mgrs/Arth.png";
 import anoushkaPhoto from "../../images/Mgrs/Anoushka.jpeg";
 import kaushikPhoto from "../../images/Mgrs/Kaushik.jpg";
 import hardikPhoto from "../../images/Mgrs/Hardik.jpg";
+import aanshiPhoto from "../../images/Mgrs/Aanshi.png";
 
 // Convener photos
 import divyaPhoto from "../../images/Cons/Divya.jpeg";
@@ -224,7 +225,7 @@ const teamSections = [
         email: "",
         linkedin: "https://www.linkedin.com/in/aanshiloladia/",
         whatsapp: "7020632458",
-        image: ""
+        image: aanshiPhoto
       }
     ],
     conveners: [
