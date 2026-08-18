@@ -164,63 +164,29 @@ const teamSections = [
     ]
   },
   {
-    department: "Web",
+    department: "Web, Media & Design",
     managers: [
       {
         name: "Kaushik Ravuthu",
-        role: "Manager",
+        role: "Web Manager",
         phone: "8668339066",
         email: "kaushik.sustainabilitycell@gmail.com",
         linkedin: "https://www.linkedin.com/in/kaushik-ravuthu/",
         whatsapp: "8668339066",
         image: kaushikPhoto
-      }
-    ],
-    conveners: [
-      {
-        name: "Aditya Ahire",
-        role: "Convener",
-        image: adityaAhirePhoto
       },
       {
-        name: "Pratik Kine",
-        role: "Convener",
-        image: pratikPhoto
-      }
-    ]
-  },
-  {
-    department: "Media",
-    managers: [
-      {
         name: "Hardik Garg",
-        role: "Manager",
+        role: "Media Manager",
         phone: "9680403262",
         email: "hardik.sustainabilitycell.iitb@gmail.com",
         linkedin: "https://www.linkedin.com/in/hardik-garg-372222317/",
         whatsapp: "9680403262",
         image: hardikPhoto
-      }
-    ],
-    conveners: [
-      {
-        name: "Nyasa Nayak",
-        role: "Convener",
-        image: nyasaPhoto
       },
       {
-        name: "Veer Vijay Poonia",
-        role: "Convener",
-        image: veerPhoto
-      }
-    ]
-  },
-  {
-    department: "Design",
-    managers: [
-      {
         name: "Aanshi Loladia",
-        role: "Manager",
+        role: "Design Manager",
         phone: "7020632458",
         email: "",
         linkedin: "https://www.linkedin.com/in/aanshiloladia/",
@@ -230,13 +196,33 @@ const teamSections = [
     ],
     conveners: [
       {
+        name: "Pratik Kine",
+        role: "Web Convener",
+        image: pratikPhoto
+      },
+      {
+        name: "Aditya Ahire",
+        role: "Web Convener",
+        image: adityaAhirePhoto
+      },
+      {
+        name: "Nyasa Nayak",
+        role: "Media Convener",
+        image: nyasaPhoto
+      },
+      {
+        name: "Veer Vijay Poonia",
+        role: "Media Convener",
+        image: veerPhoto
+      },
+      {
         name: "Spandan",
-        role: "Convener",
+        role: "Design Convener",
         image: spandanPhoto
       },
       {
         name: "Yashvi Shah",
-        role: "Convener",
+        role: "Design Convener",
         image: yashviPhoto
       }
     ]
@@ -359,7 +345,7 @@ const ConvenerCard = ({ member }) => (
   </div>
 );
 
-const pyramidDepartments = ["Web", "Media", "Design"];
+const combinedDepartment = "Web, Media & Design";
 
 export default function Team() {
   const [copiedEmail, setCopiedEmail] = useState("");
@@ -389,35 +375,43 @@ export default function Team() {
         />
 
         {teamSections.map((section) => {
-          const isPyramid = pyramidDepartments.includes(section.department);
+          const isCombined = section.department === combinedDepartment;
           const isOC = section.department === "Overall Co-ordinators";
 
-          if (isPyramid) {
-            // Web, Media, Design: Manager centered on top, 2 conveners below
+          if (isCombined) {
+            // Web, Media & Design: 3 Managers in a row, then 3+3 conveners
+            const convenerRow1 = section.conveners.slice(0, 3);
+            const convenerRow2 = section.conveners.slice(3, 6);
             return (
               <div key={section.department} className="mb-16">
                 <h3 className="text-2xl font-bold text-[#1B4332] mb-8 text-center">
                   {section.department}
                 </h3>
-                {/* Manager centered on top */}
-                <div className="flex justify-center mb-8">
-                  <div className="w-full max-w-sm">
-                    {section.managers.map((member, index) => (
-                      <MemberCard
-                        key={index}
-                        member={member}
-                        copiedEmail={copiedEmail}
-                        copiedPhone={copiedPhone}
-                        handleCopyEmail={handleCopyEmail}
-                        handleCopyPhone={handleCopyPhone}
-                      />
+                {/* 3 Managers in a row */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                  {section.managers.map((member, index) => (
+                    <MemberCard
+                      key={index}
+                      member={member}
+                      copiedEmail={copiedEmail}
+                      copiedPhone={copiedPhone}
+                      handleCopyEmail={handleCopyEmail}
+                      handleCopyPhone={handleCopyPhone}
+                    />
+                  ))}
+                </div>
+                {/* Convener Row 1: 3 conveners */}
+                {convenerRow1.length > 0 && (
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+                    {convenerRow1.map((member, index) => (
+                      <ConvenerCard key={index} member={member} />
                     ))}
                   </div>
-                </div>
-                {/* Conveners centered below */}
-                {section.conveners.length > 0 && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-                    {section.conveners.map((member, index) => (
+                )}
+                {/* Convener Row 2: 3 conveners */}
+                {convenerRow2.length > 0 && (
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+                    {convenerRow2.map((member, index) => (
                       <ConvenerCard key={index} member={member} />
                     ))}
                   </div>
