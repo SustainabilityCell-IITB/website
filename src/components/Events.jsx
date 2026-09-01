@@ -21,6 +21,19 @@ export default function Events() {
 
   const events = [
     {
+      title: "Green Newsletter",
+      description: "Sustainability Cell council interacted & assisted Freshers in plantation of the Seed paper Green Newsletter copies in designated pouches installed outside Fresher Hostels 15 & 16 for this purpose. Freshers had a fun time while planting & watering the seeds. This unique initiative achieved 2 major goals - informing the Freshers about Sustainability Cell and the various sustainability related initiatives across the institute, and also increasing the greenery around Hostels 15 & 16.",
+      image: "/~sustainabilitycell/images/green_newsletter.jpg",
+      date: "August 2026",
+      location: "IIT Bombay",
+      category: "awareness",
+      stats: {
+        highlight: "Green Newsletter made from special seed paper",
+        reach: "1400+ Freshers received copies",
+        impact: "Plantation drive on Independence Day 2026"
+      }
+    },
+    {
       title: "Winter Projects 2.0",
       description: "Winter Projects 2.0 gave students hands-on exposure to sustainability problem-solving in real organizational contexts. Structured around clear problem statements, participants applied practical frameworks across supply chains, ESG, climate analysis, and sustainable finance to produce outcome-driven deliverables.",
       image: "/~sustainabilitycell/images/Winter%20Projects%202025.jpg",

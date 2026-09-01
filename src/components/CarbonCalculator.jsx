@@ -1,6 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
+// Google Apps Script Web App URL that appends each completed submission
+// (hostel number) as a row in a Google Sheet. Set VITE_SHEET_URL in
+// .env.production. Empty = logging is skipped (calculator still works).
+const SHEET_URL = import.meta.env.VITE_SHEET_URL || "";
+
 // ============================================================
 // Pure client-side score computation (no backend needed)
 // All formulas extracted from the reference app's Resultpage.jsx
@@ -434,6 +439,18 @@ export default function CarbonCalculator() {
       setCurrentStep((s) => s + 1);
     } else {
       setResults(calculateResults(formData));
+
+      // Log the completed submission to the Google Sheet (fire-and-forget;
+      // never blocks showing results). text/plain + no-cors so the browser
+      // skips the CORS preflight Apps Script can't answer.
+      if (SHEET_URL) {
+        fetch(SHEET_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({ hostelNo: formData.hostelNo, userName: "" }),
+        }).catch(() => {});
+      }
     }
   };
 
