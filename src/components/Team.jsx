@@ -168,7 +168,7 @@ const teamSections = [
     managers: [
       {
         name: "Kaushik Ravuthu",
-        role: "Web Manager",
+        role: "Manager",
         phone: "8668339066",
         email: "kaushik.sustainabilitycell@gmail.com",
         linkedin: "https://www.linkedin.com/in/kaushik-ravuthu/",
@@ -177,7 +177,7 @@ const teamSections = [
       },
       {
         name: "Hardik Garg",
-        role: "Media Manager",
+        role: "Manager",
         phone: "9680403262",
         email: "hardik.sustainabilitycell.iitb@gmail.com",
         linkedin: "https://www.linkedin.com/in/hardik-garg-372222317/",
@@ -186,7 +186,7 @@ const teamSections = [
       },
       {
         name: "Aanshi Loladia",
-        role: "Design Manager",
+        role: "Manager",
         phone: "7020632458",
         email: "",
         linkedin: "https://www.linkedin.com/in/aanshiloladia/",
@@ -197,32 +197,32 @@ const teamSections = [
     conveners: [
       {
         name: "Pratik Kine",
-        role: "Web Convener",
+        role: "Convener",
         image: pratikPhoto
       },
       {
         name: "Aditya Ahire",
-        role: "Web Convener",
+        role: "Convener",
         image: adityaAhirePhoto
       },
       {
         name: "Nyasa Nayak",
-        role: "Media Convener",
+        role: "Convener",
         image: nyasaPhoto
       },
       {
         name: "Veer Vijay Poonia",
-        role: "Media Convener",
+        role: "Convener",
         image: veerPhoto
       },
       {
         name: "Spandan",
-        role: "Design Convener",
+        role: "Convener",
         image: spandanPhoto
       },
       {
         name: "Yashvi Shah",
-        role: "Design Convener",
+        role: "Convener",
         image: yashviPhoto
       }
     ]
@@ -269,7 +269,7 @@ const MemberCard = ({ member, copiedEmail, copiedPhone, handleCopyEmail, handleC
       ) : (
         <div className="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-[#F8F9FA] shadow-lg mt-6 bg-gray-200 flex items-center justify-center">
           <svg className="w-20 h-20 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+            <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />
           </svg>
         </div>
       )}
@@ -296,7 +296,7 @@ const MemberCard = ({ member, copiedEmail, copiedPhone, handleCopyEmail, handleC
         )}
         <SocialIcon href={member.linkedin} label="LinkedIn">
           <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
           </svg>
         </SocialIcon>
         <SocialIcon
@@ -304,7 +304,7 @@ const MemberCard = ({ member, copiedEmail, copiedPhone, handleCopyEmail, handleC
           label={member.phone ? "Copy Phone Number" : "No Phone Number"}
         >
           <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
           </svg>
         </SocialIcon>
         {member.phone && copiedPhone === member.phone && (
@@ -330,7 +330,7 @@ const ConvenerCard = ({ member }) => (
       ) : (
         <div className="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-[#F8F9FA] shadow-lg mt-6 bg-gray-200 flex items-center justify-center">
           <svg className="w-20 h-20 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+            <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />
           </svg>
         </div>
       )}
@@ -428,11 +428,10 @@ export default function Team() {
               </h3>
               {/* Managers grid */}
               <div
-                className={`grid gap-8 ${
-                  isOC
+                className={`grid gap-8 ${isOC
                     ? "md:grid-cols-2 max-w-4xl mx-auto"
                     : "md:grid-cols-3"
-                }`}
+                  }`}
               >
                 {section.managers.map((member, index) => (
                   <MemberCard
