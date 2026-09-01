@@ -19,7 +19,8 @@ export default function Navbar() {
     { href: "#events", label: "Events" },
     { href: "#implementations", label: "Implementations" },
     { href: "#team", label: "Contact" },
-    { href: `${basePath}/green-score`, label: "Green Score" }
+    { href: `${basePath}/green-score`, label: "Green Score" },
+    { href: "https://gymkhana.iitb.ac.in/~sustainabilitycell/GreenMap/", label: "Green Map" }
   ];
 
   return (

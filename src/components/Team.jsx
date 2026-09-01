@@ -168,7 +168,7 @@ const teamSections = [
     managers: [
       {
         name: "Kaushik Ravuthu",
-        role: "Web Manager",
+        role: "Manager",
         phone: "8668339066",
         email: "kaushik.sustainabilitycell@gmail.com",
         linkedin: "https://www.linkedin.com/in/kaushik-ravuthu/",
@@ -177,7 +177,7 @@ const teamSections = [
       },
       {
         name: "Hardik Garg",
-        role: "Media Manager",
+        role: "Manager",
         phone: "9680403262",
         email: "hardik.sustainabilitycell.iitb@gmail.com",
         linkedin: "https://www.linkedin.com/in/hardik-garg-372222317/",
@@ -186,7 +186,7 @@ const teamSections = [
       },
       {
         name: "Aanshi Loladia",
-        role: "Design Manager",
+        role: "Manager",
         phone: "7020632458",
         email: "",
         linkedin: "https://www.linkedin.com/in/aanshiloladia/",
