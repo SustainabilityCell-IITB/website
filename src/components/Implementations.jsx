@@ -9,12 +9,6 @@ export default function Implementations() {
 
   const implementations = [
     {
-      title: "Green Newsletter",
-      shortDescription: "Green Newsletter made from special Seed paper distributed among 1400+ Freshers & executed their plantation on Independance Day 2026",
-      fullDescription: "Sustainability Cell council interacted & assisted Freshers in plantation of the Seed paper Green Newsletter copies in designated pouches installed outside Fresher Hostels 15 & 16 for this purpose. Freshers had a fun time while planting & watering the seeds. This unique initiative achieved 2 major goals - informing the Freshers about Sustainability Cell and the various sustainability related initiatives across the institute, and also increasing the greenery around Hostels 15 & 16 ",
-      image: "/~sustainabilitycell/images/green_newsletter.jpg"
-    },
-    {
       title: "Waterless Urinals",
       shortDescription: "Zerodor-based waterless urinal system implemented to reduce water use and improve hygiene.",
       fullDescription: "The Waterless Urinals initiative replaced conventional flushing systems with Zerodor technology using a mechanical float valve and airtight seal. This enabled water-free operation while preventing odor escape. The implementation delivered major impact through annual savings of around 150,000 liters of water, improved hygiene by eliminating bacterial spray from flushing, and lower maintenance due to touch-free operation.",
