@@ -20,7 +20,11 @@ export default function Navbar() {
     { href: "#implementations", label: "Implementations" },
     { href: "#team", label: "Contact" },
     { href: `${basePath}/green-score`, label: "Green Score" },
-    { href: "https://gymkhana.iitb.ac.in/~sustainabilitycell/GreenMap/", label: "Green Map" }
+    { href: "https://gymkhana.iitb.ac.in/~sustainabilitycell/GreenMap/", label: "Green Map" },
+    // Hosted on Vercel rather than the gymkhana container: the leaderboard is a
+    // server-rendered Next.js app (auth, API routes, per-request Supabase reads),
+    // which the static Web-Others container cannot serve.
+    { href: "https://gcleaderboard.vercel.app", label: "Green Cup" }
   ];
 
   return (
