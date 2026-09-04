@@ -22,11 +22,11 @@ export default function Navbar({ logoHidden = false }) {
     { href: "#implementations", label: "Implementations" },
     { href: "#team", label: "Contact" },
     { href: `${basePath}/green-score`, label: "Green Score" },
-    { href: "https://gymkhana.iitb.ac.in/~sustainabilitycell/GreenMap/", label: "Green Map" },
+    { href: "https://gymkhana.iitb.ac.in/~sustainabilitycell/GreenMap/", label: "Green Map", target: "_blank", rel: "noopener noreferrer" },
     // Hosted on Vercel rather than the gymkhana container: the leaderboard is a
     // server-rendered Next.js app (auth, API routes, per-request Supabase reads),
     // which the static Web-Others container cannot serve.
-    { href: "https://gcleaderboard.vercel.app", label: "Green Cup" }
+    { href: "https://gcleaderboard.vercel.app", label: "Green Cup", target: "_blank", rel: "noopener noreferrer" }
   ];
 
   return (
@@ -63,6 +63,7 @@ export default function Navbar({ logoHidden = false }) {
                 <a
                   key={link.href}
                   href={link.href}
+                  {...(link.target ? { target: link.target, rel: link.rel } : {})}
                   className={`text-lg font-medium transition-all duration-200 ${
                     isScrolled
                       ? "text-[#1B4332] hover:text-[#9CCC5A]"
@@ -109,6 +110,7 @@ export default function Navbar({ logoHidden = false }) {
                 <a
                   key={link.href}
                   href={link.href}
+                  {...(link.target ? { target: link.target, rel: link.rel } : {})}
                   className="block px-3 py-2 text-base font-medium text-[#1B4332] hover:text-[#9CCC5A]"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
