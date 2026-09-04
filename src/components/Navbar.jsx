@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import ScellLogo from "./ScellLogo";
+import { LOGO_TARGET_ATTR } from "./LogoIntro";
 
-export default function Navbar() {
+export default function Navbar({ logoHidden = false }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const basePath = (import.meta.env.BASE_URL || "").replace(/\/$/, "");
@@ -39,11 +41,16 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-20">
           <div className="flex-shrink-0">
             <a href={`${basePath}/`} className="flex items-center">
-              <img
-                src="/~sustainabilitycell/images/Scell-Logo.svg"
-                alt="Sustainability Cell IIT Bombay Logo"
+              {/* Inline rather than an <img>: the load film draws THIS geometry
+                  and lands on this element, so both must be the same component
+                  at the same viewBox. `logoHidden` holds it out of sight while
+                  the film's own copy is still flying in - the existing 300ms
+                  opacity transition then doubles as the handover fade. */}
+              <ScellLogo
+                {...{ [LOGO_TARGET_ATTR]: true }}
+                title="Sustainability Cell IIT Bombay Logo"
                 className={`h-16 w-auto transition-all duration-300 ${
-                  isScrolled ? "opacity-100" : "opacity-90"
+                  logoHidden ? "opacity-0" : isScrolled ? "opacity-100" : "opacity-90"
                 }`}
               />
             </a>
